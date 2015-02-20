@@ -71,6 +71,67 @@ for(rock in rocks){
 
 var camera = {x:0, y:0};
 
+
+// pause game function 
+function pauseGame()
+{
+	
+}
+
+function startGame()
+{
+	
+	setInterval(function()
+	{
+		
+	    if(key[37]){
+	    	xvel = xvel-.01;
+	    }
+	    if(key[38]){
+	    	yvel = yvel -.01;
+	    }
+	    if(key[39]){
+	    	xvel = xvel +.01;
+	    }
+	    if(key[40]){
+	    	yvel = yvel +.01;
+	    }
+	    if(key[81]){
+	    	pauseGame();	
+	    }
+	    
+	    //checkCollide(player,enemy);
+	    canvas.width=canvas.width;
+	    /*for(var obj in rocks){
+	    	obj = rocks[obj];
+	    	obj.x = obj.x+2*(Math.random());
+	    	if(obj.x > canvas.width){
+	    		obj.x = 0;
+	    		obj.y = Math.random()*canvas.height;
+	    	}
+	    }*/
+	    //draws out the images stored in The Images array, deciding layer order.
+	    
+	    	
+	    ctx.translate(canx-=xvel,cany-=yvel);
+	    for(var obj in images){
+	    	obj = images[obj];
+	    	ctx.drawImage(obj.img, obj.x, obj.y, obj.width, obj.height);
+	    	
+	    }
+	    
+	    
+	    ctx.drawImage(player.img, player.x,player.y, player.width, player.height);
+	    player.x += xvel;
+	    player.y += yvel;
+	    
+	    ctx.drawImage(boom.img, boom.x-=xvel, boom.y-=yvel, 50, 50);
+	    
+	
+	},5);
+
+}
+
 //container 
 (function(){
 player.sprite.onload=function()
@@ -94,52 +155,6 @@ var yvel = 0;
 var canx = 0;
 var cany = 0;
 //physics
-setInterval(function()
-{
-	
-    if(key[37]){
-    	xvel = xvel-.01;
-    }
-    if(key[38]){
-    	yvel = yvel -.01;
-    }
-    if(key[39]){
-    	xvel = xvel +.01;
-    }
-    if(key[40]){
-    	yvel = yvel +.01;
-    }
-    
-    //checkCollide(player,enemy);
-    canvas.width=canvas.width;
-    /*for(var obj in rocks){
-    	obj = rocks[obj];
-    	obj.x = obj.x+2*(Math.random());
-    	if(obj.x > canvas.width){
-    		obj.x = 0;
-    		obj.y = Math.random()*canvas.height;
-    	}
-    }*/
-    //draws out the images stored in The Images array, deciding layer order.
-    
-    	
-    ctx.translate(canx-=xvel,cany-=yvel);
-    for(var obj in images){
-    	obj = images[obj];
-    	ctx.drawImage(obj.img, obj.x, obj.y, obj.width, obj.height);
-    	
-    }
-    
-    
-    ctx.drawImage(player.img, player.x,player.y, player.width, player.height);
-    player.x += xvel;
-    player.y += yvel;
-    
-    ctx.drawImage(boom.img, boom.x-=xvel, boom.y-=yvel, 50, 50);
-    
-
-},5);
-
 
 
 

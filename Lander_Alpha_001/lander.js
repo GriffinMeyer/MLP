@@ -31,6 +31,10 @@ var xvel = 0;
 var yvel = 0;
 var velmax = 4;
 
+var health = 100;
+var shield = 100;
+
+
 
 function controls(){
 	//left
@@ -72,13 +76,23 @@ function update(){
    		if(energy < 100){
    			energy += .05;
    		}
+   		if(energy >= 100){
+   			shield += .01;
+   		}
    	}
    	if(!opened){
    		img.src = "phill.png";
    		if(energy > 0){
-   			energy -= .01;
+   			if(shield > 0){
+   			shield -=.1;
+   			}
+   			if(shield < 0){
+   				health -=.01;
+   			}
+   			
    		}
    	}
+   	
    	
 	
 }
@@ -94,11 +108,19 @@ ctx.translate(-xvel,-yvel);
 ctx.drawImage(space,-8544/2,-5696/2,8544,5696);
 controls();
 
+
 //ctx.translate(0+=xvel,0+=yvel);
 
 update();
 ctx.drawImage(img, x+canvas.width/2-100, y+canvas.height/2-100, 200, 200);
 
 //draw energy bar
-ctx.fillRect(x+(canvas.width/2)-(energy*6)/2,y+canvas.height-40,energy*6,40);
+ctx.fillStyle = "red";
+ctx.fillRect(x+(canvas.width/2)-(energy*6)/2,y+canvas.height-10,energy*6,10);
+//Draw health bar
+ctx.fillStyle = "green";
+ctx.fillRect(x+(canvas.width/2)-(health*6)/2,y+canvas.height-0,health*6,30);
+//draw shield bar
+ctx.fillStyle = "blue";
+ctx.fillRect(x+(canvas.width/2)-(shield*6)/2,y+canvas.height-40,shield*6,30);
 },5);

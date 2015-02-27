@@ -1,55 +1,96 @@
-var menuSpriteMap = new Image();
-menuSpriteMap.src = "gameMenuSpriteSheet.png";
-menuSpriteMap.frameIndex = 0;
-menuSpriteMap.width = 50;
-menuSpriteMap.height = 50;
-menuSpriteMap.frameWidth = 50;
+var MenuButton = function(imageUrl,  Xposition, Yposition)
+{
+	console.log("url is: " +  imageUrl);
+	this.img = new Image();
+	this.img.src = imageUrl;
+	this.framIndex = 0;
+	this.frameWidth = 50;
+	this.height = 50;
+	this.width = 50;
+	this.x = Xposition;
+	this.y = Yposition;
+}
+function drawMenuSprite(menuSprite)
+{
+		ctx.drawImage(
+			startButton.img,
+			1* menuSprite.frameWidth,   // image clipping x
+			0,				      // image clipping Y
+			menuSprite.width,           // width of the image clipped
+			menuSprite.height,          // height of the image clipped
+			menuSprite.x,                             // x coordinate to place image
+			menuSprite.y,                             // y coordinate to place image
+			menuSprite.width,           // stretch image to this X point
+			menuSprite.height           // stretch image to this Y point
+		);
+}
+
+
+var gamestate = "false";
+var ct1 = document.getElementById("canvas");
+
+var startButton = new MenuButton("gameMenuSpriteSheet.png",50,50);
+var pauseButton = new MenuButton("gameMenuSpriteSheet.ong",50,50);
+var highScoreButton = new MenuButton("gameMenuSpriteSheet.ong",50,50);
+var CreditsButton = new MenuButton("gameMenuSpriteSheet.ong",50,50);
 
 // not yet ready, just messing with a sprite sheet for the menu 
 function drawMainMenu()
 {
+	
 	    //draws the Title Screen
+	    
+	    // draws start button
+	    drawMenuSprite(startButton);
+	    
 		console.log("drawing menu");
-		// draws the start game button
-			ctx.drawImage(
-			menuSpriteMap,
-			1* menuSpriteMap.frameWidth, 
-			0,
-			menuSpriteMap.width,
-			menuSpriteMap.height,
-			0,
-			0,
-			menuSpriteMap.width,
-			menuSpriteMap.height
-			 );
+		
 		// draws the credits button
 	
 		// draws the highscore button 
 }
 
-
-function sprite(options)
+function checkMenuClick(menuButton, x, y)
 {
-	var spriteObject = {};
-//	spriteObject = options.context;
-	spriteObject = options.width;
-	spriteObject = options.height;
-	spriteObject = options.image;
-	return spriteObject;
+	var minX = menuButton.x;
+	var minY = menuButton.y;
+	var maxX = menuButton.x + menuButton.width;
+	var maxY = menuButton.y + menuButton.height;
+	console.log("minX: " + minX + " minY: " + minY + " maxX: " + maxX + " MaxY: " + maxY);
+	if(x >= minX && x <= maxX && y >= minY && y <= maxY)
+	{
+    //Point is inside the sprite's bounds
+      return true;
+    }
+
+	console.log("not in range !");
+	return false;
 }
-
-document.addEventListener("click", function()
+canvas.addEventListener("click", function(e)
 {
-	startGame();
+	console.log("coordinates are: " +  e.clientX + " and " + e.clientY);
+	 if(gamestate == "false")
+	 {
+ 		
+ 		if(checkMenuClick(startButton,e.clientX,e.clientY))
+ 		{
+ 			 startGame();
+ 			 gamestate = "true";
+ 		}
+ 	
+ 	
+ 			
+	 }
+	
+	
 })
-
 
 
 
 function gameMainMenu()
 {
 	drawMainMenu();
-	startGame();
+	//startGame();
 }
 
 

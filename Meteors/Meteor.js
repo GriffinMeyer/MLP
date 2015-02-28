@@ -3,13 +3,13 @@ var ctx = canvas.getContext("2d");
 
 var meteor = new Image();
 meteor.src = "Meteor.png";
-var mx =1199;
+var mx = 1199;
 var my = Math.round(Math.random() * 800);
 
-function movement(){
+function movement(object){
 
-	var Xdis = Phil.x - this.x;
-	var Ydis = Phil.y - this.y;
+	var Xdis = Phil.x - object.x;
+	var Ydis = Phil.y - object.y;
 	
 	var sqx = Math.pow(Xdis, 2);
 	var sqy = Math.pow(Ydis, 2);
@@ -138,5 +138,9 @@ function moveandhit(){
 	
 
 }
+
+movement(meteor);
+
+moveandhit(meteor);
 
 collision(img, meteor);

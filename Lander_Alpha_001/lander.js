@@ -4,7 +4,7 @@ var key = [];
 var playerX  = canvas.width/2-100;
 var playerY = canvas.height/2-100;
 var playerImg = new Image();
-playerImg.src = "phill.png";
+playerImg.src = "Phil (Default).png";
 
 var uiX = 0;
 var uiY = 0;
@@ -36,12 +36,12 @@ function rock(x, y, width, height, sprite){
 	
 }
 
-var rocks = new Array();
-
+//var rocks = new Array();
+/*
 for(var i = 0; i < 10; i++){
 	rocks[i] = new rock(Math.random()*canvas.width,Math.random()*canvas.height, 50, 50, "Meteor.png");
 }
-
+*/
 function collide(speed){
 	xvel = -xvel*2;
 	yvel = -yvel*2;
@@ -126,11 +126,22 @@ function checkCollide(){
 	
 }
 
+
+var bgx = 0;
+var bgy = 0;
 function movement(){
-	playerX+=xvel;
-	playerY+=yvel;
-	uiX+=xvel;
-	uiY+=yvel;
+	//playerX+=xvel;
+	//playerY+=yvel;
+	//uiX+=xvel;
+	if(bgx <= 0){
+		
+	bgx -= xvel;
+	}
+	bgy -=yvel;
+	uiX = 0;
+	mx-=xvel;
+	my -=yvel;
+	
 }
 
 
@@ -142,6 +153,17 @@ function update(){
 	//if(checkCollide() == true){
 		//alert("collide");
 	//}
+	if(AABB(mx, playerX, my, playerY, 187, 250, 190, 236) == true){
+
+	xvel = -xvel*2;
+	yvel = -yvel*2;
+	if(shield > 0){
+		shield -=10;
+	}
+	if(shield <= 0){
+		health -=10;
+	} 
+	}
 	if(health <= 0){
 		alert("death");
 		health = 100;
@@ -156,7 +178,7 @@ function update(){
    		}
    	}
    	if(!opened){
-   		playerImg.src = "phill.png";
+   		playerImg.src = "Phil (Default).png";
    		if(energy > 0){
    			if(shield > 0){
    			shield -=.01;
@@ -170,14 +192,16 @@ function update(){
 }
 
 function draw(){
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-ctx.translate(-xvel,-yvel);
-ctx.drawImage(space,-8544/2,-5696/2,8544,5696);
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+//ctx.translate(-xvel,-yvel);
+//ctx.drawImage(space,-8544/2,-5696/2,8544,5696);
 
-ctx.drawImage(playerImg, playerX, playerY, 480, 240);
-ctx.drawImage(rock, mx, my, 281, 286);
+ctx.drawImage(space,bgx,bgy,8544,5696);
 
-//draw energy bar
+ctx.drawImage(playerImg, playerX, playerY, 250, 236);
+ctx.drawImage(rock, mx, my, 187, 190);
+
+//draw energy barx
 //***********************
 //fix the display of the bars
 //using their own x and y 

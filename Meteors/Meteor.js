@@ -22,7 +22,7 @@ function movement(object){
 	
 	var angle = Math.atan2(Ydis, Xdis);
 	
-	this.rotation = angle;
+    object.rotation = angle;
 	
 	var Xspeed = Math.cos(angle) * speed;
 	var YSpeed = Math.sin(angle) * speed;

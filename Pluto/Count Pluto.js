@@ -12,12 +12,12 @@ var gravity = 0;
 
 function collide(){
 	
-	var Px1 = Pluto.x + Pluto.width;
-	var Py1 = Pluto.y + Pluto.height;
-	var Px2 = Phil.x + Phil.width;
-	var Py2 = Phil.y + Phil.height;
+    var Px1 = Pluto.x + Pluto.width;
+    var Py1 = Pluto.y + Pluto.height;
+    var Px2 = Phil.x + Phil.width;
+    var Py2 = Phil.y + Phil.height;
 	
-	if(Pluto.x >= Phil.x && Pluto.x <= Px2 && Pluto.y >= Phil.y && Pluto.y <= Py2){
+    if(Pluto.x >= Phil.x && Pluto.x <= Px2 && Pluto.y >= Phil.y && Pluto.y <= Py2){
           health -= 100;
         
         

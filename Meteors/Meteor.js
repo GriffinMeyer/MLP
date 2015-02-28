@@ -8,40 +8,40 @@ var my = Math.round(Math.random() * 800);
 
 function movement(object){
 
-	var Xdis = Phil.x - object.x;
-	var Ydis = Phil.y - object.y;
+    var Xdis = Phil.x - object.x;
+    var Ydis = Phil.y - object.y;
 	
-	var sqx = Math.pow(Xdis, 2);
-	var sqy = Math.pow(Ydis, 2);
+    var sqx = Math.pow(Xdis, 2);
+    var sqy = Math.pow(Ydis, 2);
 	
-	var sqh = sqx + sqy;
+    var sqh = sqx + sqy;
 	
-	var Hdis = Math.sqrt(sqh);
+    var Hdis = Math.sqrt(sqh);
 	
-	var speed = 50/Hdis;
+    var speed = 50/Hdis;
 	
-	var angle = Math.atan2(Ydis, Xdis);
+    var angle = Math.atan2(Ydis, Xdis);
 	
     object.rotation = angle;
 	
-	var Xspeed = Math.cos(angle) * speed;
-	var YSpeed = Math.sin(angle) * speed;
+    var Xspeed = Math.cos(angle) * speed;
+    var YSpeed = Math.sin(angle) * speed;
 	
 }
 
 function collision(image1, image2){
 	
-	var mx1 = image1.x;
-	var Mx1 = image1.x + image1.width;
-	var my1 = image1.y;
-	var My1 = image1.y + image.height;
-	var mx2 = image2.x;
-	var Mx2 = image2.x + image2.width;
-	var my2 = image2.y;
-	var My2 = image2.y + image2.width;
+    var mx1 = image1.x;
+    var Mx1 = image1.x + image1.width;
+    var my1 = image1.y;
+    var My1 = image1.y + image.height;
+    var mx2 = image2.x;
+    var Mx2 = image2.x + image2.width;
+    var my2 = image2.y;
+    var My2 = image2.y + image2.width;
 	
-	if(0 <= Math.abs(xvel) < 1 && 0 <= Math.abs(yvel) < 1){
-	   if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
+    if(0 <= Math.abs(xvel) < 1 && 0 <= Math.abs(yvel) < 1){
+       if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           health -= 20;
         
         

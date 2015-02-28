@@ -60,3 +60,15 @@ function phase4(){
 		gravity += 0.1;
 	}
 }
+
+setTimeout(phase1(), 10000);
+clearTimeout(phase1());
+
+setTimeout(phase2(), 60000);
+clearTimeout(phase2());
+
+setTimeout(phase3(), 60000);
+clearTimeout(phase3());
+
+setTimeout(phase4(), 60000);
+

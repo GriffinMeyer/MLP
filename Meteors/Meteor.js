@@ -3,7 +3,7 @@ var ctx = canvas.getContext("2d");
 
 var meteor = new Image();
 meteor.src = "Meteor.png";
-var mx = 999;
+var mx =1199;
 var my = Math.round(Math.random() * 800);
 
 function movement(){
@@ -113,7 +113,7 @@ function collision(image1, image2){
        }
         
     }else if(Math.abs(xvel) == 4 && Math.abs(yvel) == 4){
-    	if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
+       if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           health -= 100;
         
         

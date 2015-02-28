@@ -1,6 +1,7 @@
 var canvas=document.getElementById("canvas");
 var ctx=canvas.getContext("2d");
 var key = [];
+var rocks = [];
 var playerX  = canvas.width/2-100;
 var playerY = canvas.height/2-100;
 var playerImg = new Image();
@@ -10,8 +11,11 @@ var uiX = 0;
 var uiY = 0;
 var opened = false;
 
-var mx = 0;
-var my = 0;
+var mx = 800;
+var my = 500;
+
+var mx2 = 800;
+var my2 = 500;
 
 var rock = new Image();
 rock.src = "Meteor.png";
@@ -35,13 +39,15 @@ function rock(x, y, width, height, sprite){
 	this.img.src = sprite;
 	
 }
+boom = new rock(100,100, 100,100, "Phil No Shields.png");
 
-//var rocks = new Array();
+
 /*
 for(var i = 0; i < 10; i++){
 	rocks[i] = new rock(Math.random()*canvas.width,Math.random()*canvas.height, 50, 50, "Meteor.png");
-}
-*/
+}*/
+rocks[1] = boom;
+
 function collide(speed){
 	xvel = -xvel*2;
 	yvel = -yvel*2;
@@ -120,29 +126,20 @@ function AABB(x1, x2, y1, y2, width1, width2, height1, height2){
 	
 }
 
-function checkCollide(){
-	//double check this.
-	//return AABB(x, mx, y, my, 480, 281, 240, 286);
-	
-}
-
-
 var bgx = 0;
 var bgy = 0;
 function movement(){
 	//playerX+=xvel;
 	//playerY+=yvel;
 	//uiX+=xvel;
-	if(bgx <= 0){
-		
 	bgx -= xvel;
-	}
 	bgy -=yvel;
 	uiX = 0;
 	mx-=xvel;
 	my -=yvel;
 	
 }
+
 
 
 
@@ -155,8 +152,8 @@ function update(){
 	//}
 	if(AABB(mx, playerX, my, playerY, 187, 250, 190, 236) == true){
 
-	xvel = -xvel*2;
-	yvel = -yvel*2;
+	xvel = -xvel;
+	yvel = -yvel;
 	if(shield > 0){
 		shield -=10;
 	}
@@ -197,9 +194,11 @@ ctx.clearRect(0, 0, canvas.width, canvas.height);
 //ctx.drawImage(space,-8544/2,-5696/2,8544,5696);
 
 ctx.drawImage(space,bgx,bgy,8544,5696);
+//ctx.drawImage(boom.img, boom.x, boom.y, boom.width, boom.height);
 
 ctx.drawImage(playerImg, playerX, playerY, 250, 236);
 ctx.drawImage(rock, mx, my, 187, 190);
+
 
 //draw energy barx
 //***********************
@@ -221,9 +220,10 @@ ctx.fillRect(uiX+(canvas.width/2)-(shield*6)/2,uiY+canvas.height-40,shield*6,30)
 var space = new Image();
 space.src = "space.jpg";
 
-
+function loadGame(){
 setInterval(function(){
 draw();
 controls();
 update();
 },5);
+}

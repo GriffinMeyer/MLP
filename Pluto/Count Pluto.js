@@ -7,6 +7,9 @@ Pluto.src = "Pluto.png";
 var Charon = new Image();
 Charon.src = "Charon.png";
 
+var Rocket = new Image();
+Rocket.src = "Rocket.png";
+
 var gravity = 0;
 
 

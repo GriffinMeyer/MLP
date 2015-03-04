@@ -6,7 +6,6 @@ var playerX  = canvas.width/2-100;
 var playerY = canvas.height/2-100;
 var playerImg = new Image();
 playerImg.src = "Phil (Default).png";
-
 var uiX = 0;
 var uiY = 0;
 var opened = false;
@@ -21,6 +20,16 @@ var rock = new Image();
 rock.src = "Meteor.png";
 
 var energy = 100;
+function collide(speed){
+	xvel = -xvel;
+	yvel = -yvel;
+	if(shield > 0){
+		shield -=10;
+	}
+	if(shield <= 0){
+		health -=10;
+	} 
+}
 
 (function(){
 document.onkeydown=function(e)
@@ -48,16 +57,7 @@ for(var i = 0; i < 10; i++){
 }*/
 rocks[1] = boom;
 
-function collide(speed){
-	xvel = -xvel*2;
-	yvel = -yvel*2;
-	if(shield > 0){
-		shield -=10;
-	}
-	if(shield <= 0){
-		health -=10;
-	} 
-}
+
 
 document.onkeyup=function(e)
 {
@@ -67,6 +67,7 @@ document.onkeyup=function(e)
     if(code == 90){
     opened = !opened;
     //alert("Lander: x: " + x + " y: " + y + "\n Meteor x: " + mx + " y: " + my);
+    //alert(bgx + " , " + bgy);
     }
     if(code == 88){
     	collide(10);
@@ -132,6 +133,12 @@ function movement(){
 	//playerX+=xvel;
 	//playerY+=yvel;
 	//uiX+=xvel;
+	if(bgy >= 300 || bgy <= -5157){
+		collide(10);
+	}
+	if(bgx >= 500 || bgx <= -7793){
+		collide(10);
+	}
 	bgx -= xvel;
 	bgy -=yvel;
 	uiX = 0;

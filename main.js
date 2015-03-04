@@ -1,58 +1,35 @@
-var MenuButton = function(imageUrl,Xposition,Yposition, height, width)
-{
-	console.log("url is: " +  imageUrl);
-	this.img = new Image();
-	this.x = Xposition;
-	this.y = Yposition;
-	this.img.src = imageUrl;
-	this.height = height;
-	this.width = width;
-}
+var key = [];
+
+var canvas=document.getElementById("canvas");
+var ctx=canvas.getContext("2d");
 
 
-function drawMenuSprite(menuSprite)
-{
-	ctx.drawImage(menuSprite.img,menuSprite.x,menuSprite.y,menuSprite.width,menuSprite.height);
-}
 
 
 var gamestate = "false";
-var ct1 = document.getElementById("canvas");
-
-var startButton = new MenuButton("Game Images/StartButton.png",100,0,50,100);
-var returnButton = new MenuButton("Game Images/returnButton.png",100,50,50,100);
-var highScoreButton = new MenuButton("Game Images/highScoreButton.png",100,50,50,100);
-
-var display = [];
 
 
-//var creditsButton = new MenuButton("gameMenuSpriteSheet.ong",50,50);
-//var returnButton = new MenuButton ("gameMenuSpriteSheet.ong",50,50);
 
 
 // not yet ready, just messing with a sprite sheet for the menu 
 function drawMainMenu()
 {
-	
-	    //draws the Title Screen
-	    
-	    // draws start button
-	    drawMenuSprite(startButton);
-	    
-	    // draws the highscore button 
-	    drawMenuSprite(highScoreButton);
-		
-		// draws the credits button
-}
+	var startButton = new Button("Game Images/StartButton.png",100,0,50,100);
+var returnButton = new Button("Game Images/returnButton.png",100,100,50,100);
+var highScoreButton = new Button("Game Images/highScoreButton.png",100,50,50,100);
 
-function checkMenuClick(menuButton, x, y)
+	startButton.draw();	
+	returnButton.draw();
+
+}
+/*function checkMenuClick(menuButton, x, y)
 {
-	console.log("scroll offset: " +  canvas.offsetHeight)
+//	console.log("scroll offset: " +  canvas.offsetHeight)
 	var minX = menuButton.x;
 	var minY = menuButton.y;
 	var maxX = menuButton.x + menuButton.width;
 	var maxY = menuButton.y + menuButton.height;
-	console.log("minX: " + minX + " minY: " + minY + " maxX: " + maxX + " MaxY: " + maxY);
+	//console.log("minX: " + minX + " minY: " + minY + " maxX: " + maxX + " MaxY: " + maxY);
 	if(x >= minX && x <= maxX && y >= minY && y <= maxY)
 	{
     //Point is inside the sprite's bounds
@@ -66,28 +43,35 @@ function checkMenuClick(menuButton, x, y)
 
 canvas.addEventListener("click", function(e)
 {
-	console.log("coordinates are: " +  e.clientX + " and " + e.clientY);
+//	console.log("coordinates are: " +  e.clientX + " and " + e.clientY);
+console.log(display.length)
 	 if(gamestate == "false")
 	 {
  		
- 		if(checkMenuClick(startButton,e.clientX,e.clientY))
+ 		if(checkMenuClick(startButton,e.clientX,e.clientY) && display.length == 1)
  		{
+ 			console.log("clicked on start game");
  			 startGame();
  			 gamestate = "true";
  		}
- 		if(checkMenuClick(returnButton,e.clientX,e.clientY))
+ 		
+ 		if(checkMenuClick(highScoreButton,e.clientX,e.clientY )&& display.length == 1)
  		{
- 			 ctx.clearRect(0,0,canvas.width,canvas.width); 
- 			 display.pop();
- 			 console.log(display)
- 			
- 		}
- 		if(checkMenuClick(highScoreButton,e.clientX,e.clientY))
- 		{
+ 			console.log("clicked on highscores ");
+ 			 console.log(display.length);
  			 ctx.clearRect(0,0,canvas.width,canvas.width);
  			 display.push(displayHighScores());
+ 			 console.log(display.length);
  		}
- 					
+ 	    if(checkMenuClick(returnButton,e.clientX,e.clientY) && display.length > 1)
+ 		{
+ 			console.log("clicked on Return");
+ 			 ctx.clearRect(0,0,canvas.width,canvas.width); 
+ 			 display.pop();
+ 			  display.pop();
+ 			 console.log("popping" + display.length)
+ 			
+ 		}	
 	 }
 	
 })
@@ -105,9 +89,10 @@ function displayCredits()
 
 function displayHighScores()
 {	
-	
+	 console.log("in display highscores ");
 	drawMenuSprite(returnButton);	
 }
+
 
 
 function gameMainMenu()
@@ -129,11 +114,10 @@ function gameCredits()
 	
 }
 
-
+*/
 function loadGame()
 {
-    display.push(drawMainMenu());
-	
+	drawMainMenu();
 }
 
 

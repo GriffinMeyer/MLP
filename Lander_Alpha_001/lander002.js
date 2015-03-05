@@ -6,6 +6,9 @@ var ctx = canvas.getContext("2d");
 var debug = true;
 
 //Initializing Variables
+//Level Demensions- Not the same as canvas
+var roomX = 500;
+var roomY = 700;
 //Velocity direction values
 var xvel = 0;
 var yvel = 0;
@@ -51,6 +54,12 @@ playerImg.src = "Phil (Default).png";
 function update(){
 player.x += xvel;
 player.y += yvel;
+for(var i = 0; i < rocks.length; i++){
+var obj = rocks[i];
+if(AABB(obj.x,player.x,obj.y,player.y,obj.width,player.width,obj.height,player.height) == true){
+	console.log("collision!");
+}
+}
 }
 
 
@@ -84,25 +93,35 @@ function modeSwitch(){
 	
 }
 
+function AABB(x1, x2, y1, y2, width1, width2, height1, height2){
+	if(x1 < x2 + width2 &&
+	   x1 + width1 > x2 &&
+	   y1 < y2 + height2 &&
+	   height1 + y1 > y2){
+	   return true;
+	}
+	
+}
+
 function makeBoundary(){
 	//top
-	for(var i =0; i < 25; i++){
-		rocks.push(new meteor(i*50,0, 50,50, "Meteor.png"));
+	for(var i = 1; i < roomX/50; i++){
+		rocks.push(new meteor(i*50,0, 50,50, "Meteor.png"));
 	}
 	//bottom
-	for(var i = 0; i < 25; i++){
-		rocks.push(new meteor(i*50,750, 50,50, "Meteor.png"));
+	for(var i = 1; i < roomX/50; i++){
+		rocks.push(new meteor(i*50,roomY, 50,50, "Meteor.png"));
 		
 	}
 	
 	//left
-	for(var i = 1; i < 16; i++){
+	for(var i = 0; i < (roomY+50)/50; i++){
 		rocks.push(new meteor(0,i*50,50,50,"Meteor.png"));
 		
 	}
 	//right
-	for(var i = 1; i < 16; i++){
-		rocks.push(new meteor(1150,i*50,50,50,"Meteor.png"));
+	for(var i = 0; i < (roomY+50)/50; i++){
+		rocks.push(new meteor(roomX,i*50,50,50,"Meteor.png"));
 		
 	}
 	
@@ -159,7 +178,7 @@ ctx.clearRect(0, 0, canvas.width, canvas.height);
 ctx.fillRect(0,0, canvas.width, canvas.height);
 ctx.drawImage(player.img, player.x, player.y,100,100);
 //ctx.drawImage()
-for(var i = 0; i < rocks.length-1; i++){
+for(var i = 0; i < rocks.length; i++){
 var obj = rocks[i];
 ctx.drawImage(obj.img,obj.x,obj.y,obj.width,obj.height);
 }

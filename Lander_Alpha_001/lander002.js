@@ -6,9 +6,13 @@ var ctx = canvas.getContext("2d");
 var debug = true;
 
 //Initializing Variables
+//Player Stats
+var health = 100;
+var energy = 100;
+var shield = 100;
 //Level Demensions- Not the same as canvas
-var roomX = 500;
-var roomY = 700;
+var roomX = 1150;
+var roomY = 750;
 //Velocity direction values
 var xvel = 0;
 var yvel = 0;
@@ -26,7 +30,7 @@ var opened = false;
 
 //Player Object
 var player = {img:null, x: canvas.width/2, y: canvas.height/2, 
-width: 50, height:50, sprite: "Phil (Default).png"};
+width: 100, height:100, sprite: "Phil (Default).png"};
 player.img = new Image();
 player.img.src = player.sprite;
 
@@ -48,18 +52,41 @@ var rocks = new Array();
 var playerImg = new Image();
 playerImg.src = "Phil (Default).png";
 
+function collide(){
+//this collison resolve sucks, and needs to be fixed,
+//but it will work for my testing purposes.
 
+		yvel = -(yvel/1.25);
+		xvel = -(xvel/1.25);
+	
+	console.log("collision!");
+}
+
+function statBars(){
+	//red to draw health
+	ctx.fillStyle = "red";
+	ctx.fillRect((canvas.width/2)-(energy*6)/2,canvas.height-10,energy*6, 10);
+	ctx.fillStyle = "blue";
+	ctx.fillRect((canvas.width/2)-(shield*6)/2,canvas.height-20,shield*6, 10);
+	ctx.fillStyle = "green";
+	ctx.fillRect((canvas.width/2)-(health*6)/2,canvas.height-30,health*6, 10);
+	//back to black
+	ctx.fillStyle = "black";
+	
+}
 
 //Update Function
 function update(){
-player.x += xvel;
-player.y += yvel;
-for(var i = 0; i < rocks.length; i++){
-var obj = rocks[i];
-if(AABB(obj.x,player.x,obj.y,player.y,obj.width,player.width,obj.height,player.height) == true){
-	console.log("collision!");
-}
-}
+
+		for(var i = 0; i < rocks.length; i++){
+			var obj = rocks[i];
+			obj.x -= xvel;
+			obj.y -= yvel;
+			if(AABB(obj.x,player.x,obj.y,player.y,obj.width,player.width,obj.height,player.height) == true){
+			collide();
+			break;
+		}
+  	}
 }
 
 
@@ -124,6 +151,7 @@ function makeBoundary(){
 		rocks.push(new meteor(roomX,i*50,50,50,"Meteor.png"));
 		
 	}
+	rocks.push(new meteor(200,200,100,100,"Meteor.png"));
 	
 }
 //Control setting
@@ -174,13 +202,20 @@ document.onkeyup=function(e){
 
 var rock = new meteor(10, 10, 10 ,10, "Meteor.png");
 function draw(){
+	//The order things are listed here is the order they're drawn,
+	//first to last. We should probably put all images to be drawn
+	//into an array for better management, and layer control
+//Clear Rect is a better way of doing width=width, clears the screen
+//for drawing fresh.
 ctx.clearRect(0, 0, canvas.width, canvas.height);
+
 ctx.fillRect(0,0, canvas.width, canvas.height);
-ctx.drawImage(player.img, player.x, player.y,100,100);
+ctx.drawImage(player.img, player.x, player.y,player.width,player.height);
 //ctx.drawImage()
 for(var i = 0; i < rocks.length; i++){
 var obj = rocks[i];
-ctx.drawImage(obj.img,obj.x,obj.y,obj.width,obj.height);
+ctx.drawImage(obj.img,obj.x,obj.y,obj.width,obj.height);
+statBars();
 }
 //this draws a meteor
 //ctx.drawImage(rock.img,10,10,100,100);}

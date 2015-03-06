@@ -2,122 +2,137 @@ var key = [];
 
 var canvas=document.getElementById("canvas");
 var ctx=canvas.getContext("2d");
+var mousePosition = {
+	x: 0,
+	y: 0
+};
 
+var mousePressed = false;
 
+    canvas.addEventListener('mousemove', function(event)
+    {
+      mousePosition.x = event.offsetX || event.layerX;
+      mousePosition.y = event.offsetY || event.layerY;
+    });
 
+    canvas.addEventListener('mousedown', function(event) 
+    {
+      mousePressed = true;
+     
+    });
+    canvas.addEventListener('mouseup', function(event) 
+    {
 
-var gamestate = "false";
+      mousePressed = false;
+    });
+    window.addEventListener('keypress',function(event)
+    {
+    	 key = event.which || event.keyCode;
+    	if(119 == key)
+    	{
+    		paused = true;
+    	}
+    	
+    });
 
-
-
+var key;
+var paused = false;
+var gameState = "off";
+var startButton;
+var playButton;
+var returnMainMenuButton;
+var creditButton;
+var mainMenu;
+var pauseMenu;
+var creditMenu;
 
 // not yet ready, just messing with a sprite sheet for the menu 
-function drawMainMenu()
+function createMenus()
 {
-	var startButton = new Button("Game Images/StartButton.png",100,0,50,100);
-var returnButton = new Button("Game Images/returnButton.png",100,100,50,100);
-var highScoreButton = new Button("Game Images/highScoreButton.png",100,50,50,100);
-
-	startButton.draw();	
-	returnButton.draw();
-
-}
-/*function checkMenuClick(menuButton, x, y)
-{
-//	console.log("scroll offset: " +  canvas.offsetHeight)
-	var minX = menuButton.x;
-	var minY = menuButton.y;
-	var maxX = menuButton.x + menuButton.width;
-	var maxY = menuButton.y + menuButton.height;
-	//console.log("minX: " + minX + " minY: " + minY + " maxX: " + maxX + " MaxY: " + maxY);
-	if(x >= minX && x <= maxX && y >= minY && y <= maxY)
-	{
-    //Point is inside the sprite's bounds
-      return true;
-    }
-
-	console.log("not in range !");
-	return false;
-}
-
-
-canvas.addEventListener("click", function(e)
-{
-//	console.log("coordinates are: " +  e.clientX + " and " + e.clientY);
-console.log(display.length)
-	 if(gamestate == "false")
-	 {
- 		
- 		if(checkMenuClick(startButton,e.clientX,e.clientY) && display.length == 1)
- 		{
- 			console.log("clicked on start game");
- 			 startGame();
- 			 gamestate = "true";
- 		}
- 		
- 		if(checkMenuClick(highScoreButton,e.clientX,e.clientY )&& display.length == 1)
- 		{
- 			console.log("clicked on highscores ");
- 			 console.log(display.length);
- 			 ctx.clearRect(0,0,canvas.width,canvas.width);
- 			 display.push(displayHighScores());
- 			 console.log(display.length);
- 		}
- 	    if(checkMenuClick(returnButton,e.clientX,e.clientY) && display.length > 1)
- 		{
- 			console.log("clicked on Return");
- 			 ctx.clearRect(0,0,canvas.width,canvas.width); 
- 			 display.pop();
- 			  display.pop();
- 			 console.log("popping" + display.length)
- 			
- 		}	
-	 }
+	//draw Main Menu
+    startButton = new Button("Start Button","Game Images/StartButton.png",100,0,50,100);
+    creditButton = new Button("Credit Button","Game Images/highScoreButton.png",100,100,50,100);
+    returnMainMenuButton = new Button("Return Button","Game Images/returnButton.png",100,150,50,100);
+    playButton = new Button("Play","Game Images/playButton.png",100,150,50,100);
+    mainMenu = new Menu("Main Menu");
+    pauseMenu = new Menu("Pause Menu");
+    creditMenu = new Menu("Credit Menu");
 	
-})
-
-function clearScreen()
-{
+	mainMenu.addItem(startButton);
+	mainMenu.addItem(creditButton);
 	
-}
-
-function displayCredits()
-{
-		drawMenuSprite(returnButton);
-}
-
-
-function displayHighScores()
-{	
-	 console.log("in display highscores ");
-	drawMenuSprite(returnButton);	
-}
-
-
-
-function gameMainMenu()
-{
-	drawMainMenu();
-	//startGame();
-}
-
-
-function gameHighScores()
-{
-
-
 	
-}
-
-function gameCredits()
-{
 	
+	creditMenu.addItem(returnMainMenuButton);
+	
+	
+	pauseMenu.addItem(playButton);
 }
 
-*/
+function startGame()
+{
+	gameState = 'on';
+}
+
 function loadGame()
 {
-	drawMainMenu();
+	var playing = false;
+	createMenus();
+	setInterval(function()
+	{
+		if(gameState == "off" && mainMenu.isEnabled())
+		{
+			mainMenu.draw();
+		}
+		if(startButton.isEnabled() && startButton.isClicked)
+		{
+			mainMenu.clear();
+			gameState = "on";
+		}
+		if(creditButton.isEnabled() && creditButton.isClicked)
+		{
+		    mainMenu.clear();
+			creditMenu.draw();
+		}
+		if(returnMainMenuButton.isEnabled() && returnMainMenuButton.isClicked)
+		{
+			pauseMenu.clear();
+			mainMenu.draw();
+		}
+		if(playButton.isEnabled() && playButton.isClicked)
+		{
+			pauseMenu.draw();
+		}
+		creditButton.update();
+		startButton.update();
+		returnMainMenuButton.update();
+		playButton.update();
+
+		 if(paused == true && gameState != "off")
+	     {
+			gameState = "paused";
+			playing = false;
+			pauseMenu.draw();
+		 }
+	
+		
+	 	if(gameState == "on" && !playing)
+		{
+			Game();
+	     /*
+		 * 
+		 * 
+		 * Game stuff 
+		 * 
+		 * 
+		 */
+			playing = true;
+		}
+		
+		},5);
+		
+	
 }
+
 
 

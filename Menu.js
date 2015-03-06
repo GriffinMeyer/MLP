@@ -1,57 +1,94 @@
 
 
 
-function Menu()
-{
-	this.menuButtons = [];
-	this.subMenu = [];
+function Menu(name, menu)
+{	
+	this.name = name;
+	this.parentMenu = null;
+	this.menuItem = [];
+	this.enabled = true;
+  //  this.subMenu.push(this);
 }
 
 
-
-
-
-//-----------------Accesor Functions--------------------
-Menu.prototype.getSubMenu = function(index, name)
+Menu.prototype.getName = function()
 {
-	
-	return this.subMenu[name];
+	return this.name;
 }
 
-Menu.prototype.getButton = function(index, name)
+Menu.prototype.getParent = function()
 {
-	
-	return this.menuButton[name];
+    return this.parentMenu;
 }
 
+Menu.prototype.isEnabled = function()
+{
+	return this.enabled;
+}
 
 //---------------- Manipulation Funcitons-------------
+// 
+// Menu.prototype.addSubMenu = function(name)
+// {	
+	// name.parentMenu = this;
+	// this.subMenu.push(name);
+// }
 
-Menu.prototype.addSubMenu = function(subMenu)
+
+Menu.prototype.disable = function()
 {
-	this.subMenu.push(subMenu);
+	this.enabled = false;
 }
 
-
-Menu.prototype.addButton = function(menuButton)
+Menu.prototype.enable = function()
 {
-	this.menuButtons.push(menuButton);
+	this.enable = true;
 }
 
-Menu.prototype.removeSubMenu = function(index, name)
+Menu.prototype.addItem = function(item)
+{
+    this.menuItem.push(item);
+}
+
+Menu.prototype.removeItem = function(index)
+{
+		this.menuItem[index].clear();
+}
+
+Menu.prototype.clear = function()
+{
+	for(var i = 0; i < this.menuItem.length;i++)
+	{
+		
+		this.menuItem[i].clear();
+	}
+	this.enabled = false;
+}
+
+Menu.prototype.draw = function()
+{
+	for(var i = 0; i < this.menuItem.length;i++)
+	{
+		this.menuItem[i].draw();
+	}
+	this.enabled = true;
+}
+
+Menu.prototype.drawTopMenu = function()
+{
+	
+}
+
+Menu.prototype.drawCurrentMenu = function()
 {
 	
 }
 
 
-
-Menu.prototype.drawMenu = function()
+Menu.prototype.update = function()
 {
-	
-}
-
-
-Menu.prototype.drawMenuButton = function()
-{
-	while()
+	for(var i = 0; i < this.menuItem.length;i++)
+	{
+		this.menuItem[i].update();
+	}
 }

@@ -93,16 +93,28 @@ function update(){
 
 function dirVelocity(dir, speed){
 	if(dir == "left"){
-		xvel -= speed;
+		if(xvel > -maxVel){
+		xvel -= speed;	
+		}
+		
 	}
 	if(dir == "right"){
-		xvel += speed;
+		if(xvel < maxVel){
+			xvel += speed;
+		}
+		
 	}
 	if(dir == "up"){
-		yvel -= speed;
+		if(yvel > -maxVel){
+		yvel -= speed;	
+		}
+		
 	}
 	if(dir == "down"){
-		yvel += speed;
+		if(yvel < maxVel){
+			yvel += speed;
+		}
+		
 	}
 }
 

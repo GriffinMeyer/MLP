@@ -89,19 +89,27 @@ function collision(image1, image2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 10;
           else if(shield <= 0) health -= 10;
+          image1.x = 1800;
+          image1.y = 350;
         
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 10;
           else if(shield <= 0) health -= 10;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 10;
           else if(shield <= 0) health -= 10;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 10;
           else if(shield <= 0) health -= 10;
+          image1.x = 1800;
+          image1.y = 350;
        }  
     
     //0 <= x < 1, 1 <= y < 2    
@@ -109,18 +117,26 @@ function collision(image1, image2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          image1.x = 1800;
+          image1.y = 350;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          image1.x = 1800;
+          image1.y = 350;
        } 
     
     //1 <= x < 2, 0 <= y < 1   
@@ -128,18 +144,26 @@ function collision(image1, image2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          image1.x = 1800;
+          image1.y = 350;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          image1.x = 1800;
+          image1.y = 350;
        }
     
     //1 <= x < 2, 1 <= y < 2
@@ -147,36 +171,52 @@ function collision(image1, image2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          image1.x = 1800;
+          image1.y = 350;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          image1.x = 1800;
+          image1.y = 350;
        }
     //0 <= x < 1, 2 <= y < 3
     }else if(0 <= Math.abs(xvel) < 1 && 2 <= Math.abs(yvel) < 3){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
        }
     
     //1 <= x < 2, 2 <= y 3
@@ -184,18 +224,26 @@ function collision(image1, image2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
        }
     
     //2 <= x < 3, 2 <= y < 3
@@ -203,18 +251,26 @@ function collision(image1, image2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
        }
     
     //2 <= x < 3, 1 <= y < 2
@@ -222,18 +278,26 @@ function collision(image1, image2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
        }
     
     //2 <= x < 3, 0 <= y < 1
@@ -241,18 +305,26 @@ function collision(image1, image2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          image1.x = 1800;
+          image1.y = 350;
        }
     
     // x = 3 or y = 3
@@ -260,18 +332,26 @@ function collision(image1, image2){
     	if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 40;
           else if(shield <= 0) health -= 40;
+          image1.x = 1800;
+          image1.y = 350;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 40;
           else if(shield <= 0) health -= 40;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 40;
           else if(shield <= 0) health -= 40;
+          image1.x = 1800;
+          image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 40;
           else if(shield <= 0) health -= 40;
+          image1.x = 1800;
+          image1.y = 350;
        }
     }
 }
@@ -370,7 +450,8 @@ function modeSwitch(){
 function makeBoundary(){
 	//top
 	for(var i = 1; i < roomX/50; i++){
-		boundary.push(new meteor(i*50,0, 50,50, "Meteor.png"));
+		boundary.push(new meteor(i*50,0, 50,50, "Meteor.png"));
+
 	}
 	//bottom
 	for(var i = 1; i < roomX/50; i++){
@@ -458,10 +539,12 @@ ctx.drawImage(obj.img,obj.x,obj.y,obj.width,obj.height);
 }
 ctx.drawImage(meteors[0].img,meteors[0].x,meteors[0].y,meteors[0].width,meteors[0].height);
 //ctx.drawImage(meteors[0].img,10,10,100,100);
-statBars();
+statBars();
+
 
 //this draws a meteor
-//ctx.drawImage(rock.img,10,10,100,100);}
+//ctx.drawImage(rock.img,10,10,100,100);
+}
 
 
 //Launched on load

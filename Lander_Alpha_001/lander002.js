@@ -284,6 +284,8 @@ var sqh;
 var Hdis;
 var speed;
 var angle;
+var cosp;
+var sinp;
 var Xspeed;
 var Yspeed;
 //Update Function
@@ -305,13 +307,16 @@ function update(){
 			sqy = Math.pow(Ydis, 2);
 			sqh = sqx + sqy;
 			Hdis = Math.sqrt(sqh);
-			speed = 3/Hdis;
+			speed = 220/Hdis;
 		    angle = Math.atan2(Ydis, Xdis);
-			obj.rotation = angle;
-			Xspeed = Math.cos(angle) * speed;
-			YSpeed = Math.sin(angle) * speed;
-			obj.x += Xspeed;
-			obj.y += Yspeed;
+			cosp = Math.cos(angle);
+			console.log(cosp);
+			Xspeed = speed * cosp;
+			sinp = Math.sin(angle);
+			console.log(sinp);
+			Yspeed = speed * sinp;
+			obj.x += Xspeed - xvel;
+			obj.y += Yspeed - yvel;
 			//obj.x++;
 
 		}

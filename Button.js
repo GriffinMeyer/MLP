@@ -15,7 +15,7 @@ function Button(text,imgURL, x, y, height, width)
 	//this.func = func;
 	this.up = true;
 	this.isClicked = false;
-	this.inputEnabled = true;
+	this.inputEnabled = false;
 }
 
 

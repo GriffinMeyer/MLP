@@ -1,4 +1,4 @@
-var key = [];
+
 
 var canvas=document.getElementById("canvas");
 var ctx=canvas.getContext("2d");
@@ -25,19 +25,11 @@ var mousePressed = false;
 
       mousePressed = false;
     });
-    window.addEventListener('keypress',function(event)
-    {
-    	 key = event.which || event.keyCode;
-    	if(119 == key)
-    	{
-    		paused = true;
-    	}
-    	
-    });
 
-var key;
-var paused = false;
+
+var keys;
 var gameState = "off";
+var paused = false;
 var startButton;
 var playButton;
 var returnMainMenuButton;
@@ -51,9 +43,9 @@ function createMenus()
 {
 	//draw Main Menu
     startButton = new Button("Start Button","Game Images/StartButton.png",100,0,50,100);
-    creditButton = new Button("Credit Button","Game Images/highScoreButton.png",100,100,50,100);
+    creditButton = new Button("Credit Button","Game Images/StartButton.png",100,100,50,100);
     returnMainMenuButton = new Button("Return Button","Game Images/returnButton.png",100,150,50,100);
-    playButton = new Button("Play","Game Images/playButton.png",100,150,50,100);
+    playButton = new Button("Play","Game Images/StartButton.png",100,150,50,100);
     mainMenu = new Menu("Main Menu");
     pauseMenu = new Menu("Pause Menu");
     creditMenu = new Menu("Credit Menu");
@@ -69,64 +61,65 @@ function createMenus()
 	pauseMenu.addItem(playButton);
 }
 
-function startGame()
+function pauseGame()
 {
-	gameState = 'on';
+	console.log("paused game");
+	pauseMenu.draw();
+	paused = true;
 }
 
 function loadGame()
 {
 	var playing = false;
+	
 	createMenus();
+
 	setInterval(function()
 	{
 		if(gameState == "off" && mainMenu.isEnabled())
 		{
 			mainMenu.draw();
 		}
-		if(startButton.isEnabled() && startButton.isClicked)
+		if(startButton.inputEnabled && startButton.isClicked)
 		{
 			mainMenu.clear();
 			gameState = "on";
 		}
-		if(creditButton.isEnabled() && creditButton.isClicked)
+		if(creditButton.inputEnabled && creditButton.isClicked)
 		{
 		    mainMenu.clear();
 			creditMenu.draw();
 		}
-		if(returnMainMenuButton.isEnabled() && returnMainMenuButton.isClicked)
+		if(returnMainMenuButton.inputEnabled && returnMainMenuButton.isClicked)
 		{
-			pauseMenu.clear();
+			if(paused == true)
+			{
+				pauseMenu.clear();
+			}
+			else 
+			{
+				creditMenu.clear();
+			}
 			mainMenu.draw();
 		}
-		if(playButton.isEnabled() && playButton.isClicked)
+		if(playButton.inputEnabled && playButton.isClicked)
 		{
-			pauseMenu.draw();
+			console.log("play button pressed");
+			pauseMenu.clear();
+			paused = false;
 		}
 		creditButton.update();
 		startButton.update();
 		returnMainMenuButton.update();
 		playButton.update();
-
-		 if(paused == true && gameState != "off")
-	     {
-			gameState = "paused";
-			playing = false;
-			pauseMenu.draw();
-		 }
+		
 	
 		
 	 	if(gameState == "on" && !playing)
 		{
-			Game();
-	     /*
-		 * 
-		 * 
-		 * Game stuff 
-		 * 
-		 * 
-		 */
-			playing = true;
+	    
+		game();
+	    playing = true;
 		}
 		
 		},5);

@@ -78,7 +78,7 @@ function collision(image1, image2){
     var mx1 = image1.x;
     var Mx1 = image1.x + image1.width;
     var my1 = image1.y;
-    var My1 = image1.y + image.height;
+    var My1 = image1.y + image1.height;
     var mx2 = image2.x;
     var Mx2 = image2.x + image2.width;
     var my2 = image2.y;
@@ -317,6 +317,7 @@ function update(){
 			Yspeed = speed * sinp;
 			obj.x += Xspeed - xvel;
 			obj.y += Yspeed - yvel;
+			collision(obj,player); 
 			//obj.x++;
 
 		}

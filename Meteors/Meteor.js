@@ -1,33 +1,31 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-var meteor = new Image();
-meteor.src = "Meteor.png";
-var mx = 1199;
-var my = Math.round(Math.random() * 800);
 
-function movement(object){
+var Xdis = player.x - obj.x;
+var Ydis = player.y - obj.y;
+	
+var sqx = Math.pow(Xdis, 2);
+var sqy = Math.pow(Ydis, 2);
+	
+var sqh = sqx + sqy;
+	
+var Hdis = Math.sqrt(sqh);
+	
+var speed = 6/Hdis;
+	
+var angle = Math.atan2(Ydis, Xdis);
+	
+obj.rotation = angle;
+	
+var Xspeed = Math.cos(angle) * speed;
+var YSpeed = Math.sin(angle) * speed;
 
-    var Xdis = Phil.x - object.x;
-    var Ydis = Phil.y - object.y;
-	
-    var sqx = Math.pow(Xdis, 2);
-    var sqy = Math.pow(Ydis, 2);
-	
-    var sqh = sqx + sqy;
-	
-    var Hdis = Math.sqrt(sqh);
-	
-    var speed = 50/Hdis;
-	
-    var angle = Math.atan2(Ydis, Xdis);
-	
-    object.rotation = angle;
-	
-    var Xspeed = Math.cos(angle) * speed;
-    var YSpeed = Math.sin(angle) * speed;
-	
-}
+obj.x += Xspeed;
+obj.y += Yspeed;
+
+delete obj;
+
 
 function collision(image1, image2){
 	
@@ -40,107 +38,197 @@ function collision(image1, image2){
     var my2 = image2.y;
     var My2 = image2.y + image2.width;
 	
+	// 0 <= x < 1, 0 <= y < 1
     if(0 <= Math.abs(xvel) < 1 && 0 <= Math.abs(yvel) < 1){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          health -= 20;
+          if (shield > 0) shield -= 10;
+          else if(shield <= 0) health -= 10;
         
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          health -= 20;
-          
+          if (shield > 0) shield -= 10;
+          else if(shield <= 0) health -= 10;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          health -= 20;
-          
+          if (shield > 0) shield -= 10;
+          else if(shield <= 0) health -= 10;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          health -= 20;
-          
+          if (shield > 0) shield -= 10;
+          else if(shield <= 0) health -= 10;
        }  
+    
+    //0 <= x < 1, 1 <= y < 2    
+    }else if(0 <= Math.abs(xvel) < 1 && 1 <= Math.abs(yvel) < 2){
+       if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
+          if (shield > 0) shield -= 20;
+          else if(shield <= 0) health -= 20;
         
+       }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
+          if (shield > 0) shield -= 20;
+          else if(shield <= 0) health -= 20;
+          
+       }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
+          if (shield > 0) shield -= 20;
+          else if(shield <= 0) health -= 20;
+          
+       }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
+          if (shield > 0) shield -= 20;
+          else if(shield <= 0) health -= 20;
+       } 
+    
+    //1 <= x < 2, 0 <= y < 1   
+    }else if(1 <= Math.abs(xvel) < 2 && 0 <= Math.abs(yvel) < 1){
+       if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
+          if (shield > 0) shield -= 20;
+          else if(shield <= 0) health -= 20;
+        
+       }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
+          if (shield > 0) shield -= 20;
+          else if(shield <= 0) health -= 20;
+          
+       }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
+          if (shield > 0) shield -= 20;
+          else if(shield <= 0) health -= 20;
+          
+       }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
+          if (shield > 0) shield -= 20;
+          else if(shield <= 0) health -= 20;
+       }
+    
+    //1 <= x < 2, 1 <= y < 2
     }else if(1 <= Math.abs(xvel) < 2 && 1 <= Math.abs(yvel) < 2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          health -= 40;
-        
+          if (shield > 0) shield -= 20;
+          else if(shield <= 0) health -= 20;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          health -= 40;
-          
+          if (shield > 0) shield -= 20;
+          else if(shield <= 0) health -= 20;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          health -= 40;
-          
+          if (shield > 0) shield -= 20;
+          else if(shield <= 0) health -= 20;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          health -= 40;
+          if (shield > 0) shield -= 20;
+          else if(shield <= 0) health -= 20;
+       }
+    //0 <= x < 1, 2 <= y < 3
+    }else if(0 <= Math.abs(xvel) < 1 && 2 <= Math.abs(yvel) < 3){
+       if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
+        
+       }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
           
-       } 
-       
+       }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
+          
+       }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
+       }
+    
+    //1 <= x < 2, 2 <= y 3
+    }else if(1 <= Math.abs(xvel) < 2 && 2 <= Math.abs(yvel) < 3){
+       if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
+        
+       }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
+          
+       }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
+          
+       }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
+       }
+    
+    //2 <= x < 3, 2 <= y < 3
     }else if(2 <= Math.abs(xvel) < 3 && 2 <= Math.abs(yvel) < 3){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          health -= 60;
-        
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          health -= 60;
-          
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          health -= 60;
-          
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          health -= 60;
-          
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
        }
-        
-    }else if(3 <= Math.abs(xvel) < 4 && 3 <= Math.abs(yvel) < 4){
+    
+    //2 <= x < 3, 1 <= y < 2
+    }else if(2 <= Math.abs(xvel) < 3 && 1 <= Math.abs(yvel) < 2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          health -= 80;
-        
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          health -= 80;
-          
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          health -= 80;
-          
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          health -= 80;
-          
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
        }
-        
-    }else if(Math.abs(xvel) == 4 && Math.abs(yvel) == 4){
+    
+    //2 <= x < 3, 0 <= y < 1
+    }else if(2 <= Math.abs(xvel) < 3 && 0 <= Math.abs(yvel) < 1){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          health -= 100;
-        
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          health -= 100;
-          
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          health -= 100;
-          
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          health -= 100;
-          
+          if (shield > 0) shield -= 30;
+          else if(shield <= 0) health -= 30;
        }
+    
+    // x = 3 or y = 3
+    }else if(Math.abs(xvel) == 3 || Math.abs(yvel) == 3){
+    	if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
+          if (shield > 0) shield -= 40;
+          else if(shield <= 0) health -= 40;
         
+       }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
+          if (shield > 0) shield -= 40;
+          else if(shield <= 0) health -= 40;
+          
+       }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
+          if (shield > 0) shield -= 40;
+          else if(shield <= 0) health -= 40;
+          
+       }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
+          if (shield > 0) shield -= 40;
+          else if(shield <= 0) health -= 40;
+       }
     }
-
 }
 
-function moveandhit(){
-	
 
-}
 
-movement(meteor);
-
-moveandhit(meteor);
-
-collision(img, meteor);

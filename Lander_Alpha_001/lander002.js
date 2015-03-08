@@ -412,31 +412,47 @@ function update(){
 
 		}
 		boundaryCollision();
+		modeUpdate();
 }
 
-
+function modeUpdate(){
+	if(opened){
+		if(energy <= 100){			
+		energy += .5;
+		}
+		if(energy >= 100){
+			if(shield <= 100){
+				shield += .3;
+			}
+		}
+	}
+}
 
 function dirVelocity(dir, speed){
 	if(dir == "left"){
 		if(xvel > -maxVel){
+		energy -= .1;
 		xvel -= speed;	
 		}
 		
 	}
 	if(dir == "right"){
 		if(xvel < maxVel){
+			energy -= .1;
 			xvel += speed;
 		}
 		
 	}
 	if(dir == "up"){
 		if(yvel > -maxVel){
+			energy -= .1;
 		yvel -= speed;	
 		}
 		
 	}
 	if(dir == "down"){
 		if(yvel < maxVel){
+			energy -= .1;
 			yvel += speed;
 		}
 		
@@ -507,19 +523,27 @@ document.onkeyup=function(e){
 //For movement
 	//left
 	if(key[37]){
-		dirVelocity("left", globalVel);
+		if(energy > 0){
+		dirVelocity("left", globalVel);	
+		}
+		
 	}
 	//right
 	if(key[39]){
+		if(energy > 0){
 		dirVelocity("right", globalVel);
+		}
 	}
 	//up
 	if(key[38]){
+		if(energy > 0){
 		dirVelocity("up", globalVel);
+		}
 	}
 	//down
-	if(key[40]){
+	if(key[40]){if(energy > 0){
 		dirVelocity("down", globalVel);
+	}
 	}
 	
 	if(key[90]){

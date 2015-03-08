@@ -30,7 +30,7 @@ var opened = false;
 
 //Player Object
 var player = {img:null, x: canvas.width/2, y: canvas.height/2, 
-width: 100, height:100, sprite: "Phil (Default).png"};
+width: 100, height:100, transX: 0, transY:0, sprite: "Phil (Default).png"};
 player.img = new Image();
 player.img.src = player.sprite;
 
@@ -72,8 +72,16 @@ function statBars(){
 	ctx.fillStyle = "black";
 	
 }
+function boundaryCollision(){
+if(player.transX < -roomX/2 || player.transX+player.width > roomX/2){
+	xvel = -xvel;
+}
+if(player.transY < -roomY/2 || player.transY+player.height > roomY/2){
+	yvel = -yvel;
+}
 
-function collision(image1, image2){
+}
+function obstacleCollision(image1, image2){
 	
     var mx1 = image1.x;
     var Mx1 = image1.x + image1.width;
@@ -370,7 +378,9 @@ var Xspeed;
 var Yspeed;
 //Update Function
 function update(){
-	
+	player.transX += xvel;
+	player.transY += yvel;
+	console.log(player.transY);
 	//Updating the array that surrounds the level
 		for(var i = 0; i < boundary.length; i++){
 			var obj = boundary[i];
@@ -390,18 +400,18 @@ function update(){
 			speed = 220/Hdis;
 		    angle = Math.atan2(Ydis, Xdis);
 			cosp = Math.cos(angle);
-			console.log(cosp);
+			//console.log(cosp);
 			Xspeed = speed * cosp;
 			sinp = Math.sin(angle);
-			console.log(sinp);
+			//console.log(sinp);
 			Yspeed = speed * sinp;
 			obj.x += Xspeed - xvel;
 			obj.y += Yspeed - yvel;
-			collision(obj,player); 
+			obstacleCollision(obj,player); 
 			//obj.x++;
 
 		}
-		
+		boundaryCollision();
 }
 
 

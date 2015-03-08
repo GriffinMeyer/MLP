@@ -11,7 +11,7 @@ var health = 100;
 var energy = 100;
 var shield = 100;
 //Level Demensions- Not the same as canvas
-var roomX = 1150;
+var roomX = 2000;
 var roomY = 750;
 //Velocity direction values
 var xvel = 0;
@@ -30,7 +30,7 @@ var opened = false;
 
 //Player Object
 var player = {img:null, x: canvas.width/2, y: canvas.height/2, 
-width: 100, height:100, transX: 0, transY:0, sprite: "Phil (Default).png"};
+width: 100, height:100, transX: canvas.width/2, transY: canvas.height/2, sprite: "Phil (Default).png"};
 player.img = new Image();
 player.img.src = player.sprite;
 
@@ -44,6 +44,18 @@ this.sprite = sprite;
 this.img = new Image();
 this.img.src = sprite;
 }
+
+//Comet Object
+function comet(x,y, width, height, sprite){
+	this.x = x;
+	this.y =y;
+	this.height = height;
+	this.width = width;
+	this.sprite = sprite;
+	this.img = new Image();
+	this.img.src = sprite;
+}
+
 
 //Level Box Array
 var boundary = new Array();
@@ -73,14 +85,16 @@ function statBars(){
 	
 }
 function boundaryCollision(){
-if(player.transX < -roomX/2 || player.transX+player.width > roomX/2){
+	//console.log(player.transX);
+if(player.transX+player.width> roomX || player.transX-player.width/2 < 0){
 	xvel = -xvel;
 }
-if(player.transY < -roomY/2 || player.transY+player.height > roomY/2){
+if(player.transY+player.height > roomY || player.transY-player.height/2 < 0){
 	yvel = -yvel;
 }
 
 }
+
 function obstacleCollision(image1, image2){
 	
     var mx1 = image1.x;
@@ -376,11 +390,20 @@ var cosp;
 var sinp;
 var Xspeed;
 var Yspeed;
+
+var disToXena;
+
+var landerRotate = 0;
 //Update Function
 function update(){
+	//Updating virtual player location data
 	player.transX += xvel;
 	player.transY += yvel;
-	console.log(player.transY);
+	
+	//Moving Xena in relation to player
+	xena.x -= xvel;
+	xena.y -= yvel;
+	
 	//Updating the array that surrounds the level
 		for(var i = 0; i < boundary.length; i++){
 			var obj = boundary[i];
@@ -413,6 +436,16 @@ function update(){
 		}
 		boundaryCollision();
 		modeUpdate();
+		disToXena = -(player.transX + player.width - roomX + roomY/2);
+		//Logic for comet collision
+		//if player is within 500 pixles of xena
+		if(disToXena < 500){
+			
+			landerRotate = 180-((disToXena * 180)/(500));
+			if(landerRotate > 180){
+				landerRotate = 180;
+			}
+		}
 }
 
 function modeUpdate(){
@@ -422,7 +455,7 @@ function modeUpdate(){
 		}
 		if(energy >= 100){
 			if(shield <= 100){
-				shield += .3;
+				
 			}
 		}
 	}
@@ -473,6 +506,8 @@ function modeSwitch(){
 	
 }
 
+
+
 function makeBoundary(){
 	//top
 	for(var i = 1; i < roomX/50; i++){
@@ -491,10 +526,16 @@ function makeBoundary(){
 		
 	}
 	//right
+	//this side is going to be the side
+	// that you need to land on
+	//eventually I will put this in a function or somthing
+	//but for now I'm going to write the code in draw/update to figure
+	//out how stuff works.
+	/*
 	for(var i = 0; i < (roomY+50)/50; i++){
 		boundary.push(new meteor(roomX,i*50,50,50,"Meteor.png"));
 		
-	}
+	}*/
 	
 }
 //Control setting
@@ -550,6 +591,8 @@ document.onkeyup=function(e){
 		
 	}
 }
+var rotate = 1;
+xena = new comet(roomX+(roomY/2),roomY/2, 0, 0, "Meteor.png");
 
 function draw(){
 	//The order things are listed here is the order they're drawn,
@@ -560,21 +603,48 @@ function draw(){
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 ctx.fillRect(0,0, canvas.width, canvas.height);
-ctx.drawImage(player.img, player.x, player.y,player.width,player.height);
+
+ctx.save();
+ctx.translate((canvas.width/2)+(player.width/2), (canvas.height/2)+player.height/2);
+ctx.rotate(-landerRotate*Math.PI/180);
+ctx.drawImage(player.img, player.x-canvas.width/2-player.width/2, player.y-canvas.height/2-player.height/2,player.width,player.height);
+ctx.restore();
 //ctx.drawImage()
-for(var i = 0; i < boundary.length; i++){
-var obj = boundary[i];
-ctx.drawImage(obj.img,obj.x,obj.y,obj.width,obj.height);
-}
+
 
 for(var i = 0; i < meteors.length; i++){
 var obj = meteors[i];
 ctx.drawImage(obj.img,obj.x,obj.y,obj.width,obj.height);
 }
-ctx.drawImage(meteors[0].img,meteors[0].x,meteors[0].y,meteors[0].width,meteors[0].height);
-//ctx.drawImage(meteors[0].img,10,10,100,100);
-statBars();
 
+for(var i = 0; i < boundary.length; i++){
+var obj = boundary[i];
+ctx.drawImage(obj.img,obj.x,obj.y,obj.width,obj.height);
+}
+
+//drawing the comet
+ctx.beginPath();
+ctx.arc(xena.x-roomY/2,xena.y+25,roomY/2,0,2*Math.PI);
+ctx.stroke();
+ctx.fillStyle = "#FFFF99";
+ctx.fill();
+
+
+//HOW TO ROTATE STUFF
+/*
+ctx.save();
+ctx.translate(canvas.width/2,canvas.height/2);
+ctx.rotate(rotate*Math.PI/180);
+for(var i = 0; i < boundary.length; i++){
+var obj = boundary[i];
+ctx.drawImage(obj.img,obj.x-canvas.width/2,obj.y-canvas.height/2,obj.width,obj.height);
+}
+ctx.restore();
+if(rotate < 90){
+	rotate+= .1;
+}
+*/
+statBars();
 
 //this draws a meteor
 //ctx.drawImage(rock.img,10,10,100,100);

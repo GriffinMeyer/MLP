@@ -68,8 +68,8 @@ var playerImg = new Image();
 playerImg.src = "Phil (Default).png";
 
 function initMeteors(){
-		meteors.push(new meteor(10,10, 100,100, "Meteor.png"));
-		meteors.push(new meteor(10,100,100,100, "Meteor.png"));
+		//meteors.push(new meteor(10,10, 100,100, "Meteor.png"));
+		//meteors.push(new meteor(10,100,100,100, "Meteor.png"));
 	}
 
 function statBars(){
@@ -436,7 +436,7 @@ function update(){
 		}
 		boundaryCollision();
 		modeUpdate();
-		disToXena = -(player.transX + player.width - roomX + roomY/2);
+		disToXena = -(player.transX + player.width - roomX + (roomY/2) + 200);
 		//Logic for comet collision
 		//if player is within 500 pixles of xena
 		if(disToXena < 500){
@@ -445,6 +445,9 @@ function update(){
 			if(landerRotate > 180){
 				landerRotate = 180;
 			}
+		}
+		if(-disToXena-200 >= 0){
+			console.log("Contact");
 		}
 }
 
@@ -455,6 +458,7 @@ function modeUpdate(){
 		}
 		if(energy >= 100){
 			if(shield <= 100){
+				shield += .05;
 				
 			}
 		}

@@ -68,8 +68,8 @@ var playerImg = new Image();
 playerImg.src = "Phil (Default).png";
 
 function initMeteors(){
-		//meteors.push(new meteor(10,10, 100,100, "Meteor.png"));
-		//meteors.push(new meteor(10,100,100,100, "Meteor.png"));
+		meteors.push(new meteor(5000,1000,100,100, "Meteor.png"));
+		meteors.push(new meteor(6000,1500,100,100, "Meteor.png"));
 	}
 
 

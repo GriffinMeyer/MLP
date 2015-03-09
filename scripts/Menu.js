@@ -6,6 +6,7 @@ function Menu(name, menu)
 	this.name = name;
 	this.parentMenu = null;
 	this.menuItem = [];
+	this.drawn = false;
 	this.enabled = true;
 }
 
@@ -54,10 +55,12 @@ Menu.prototype.clear = function()
 		this.menuItem[i].clear();
 	}
 	this.enabled = false;
+	this.drawn = false;
 }
 
 Menu.prototype.draw = function()
 {
+	this.drawn = true;
 	for(var i = 0; i < this.menuItem.length;i++)
 	{
 		this.menuItem[i].draw();

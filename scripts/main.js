@@ -37,27 +37,35 @@ var creditButton;
 var mainMenu;
 var pauseMenu;
 var creditMenu;
+var titleImage;
 
 // not yet ready, just messing with a sprite sheet for the menu 
 function createMenus()
 {
-	//draw Main Menu
-    startButton = new Button("Start Button","Game Images/StartButton.png",100,0,50,100);
-    creditButton = new Button("Credit Button","Game Images/StartButton.png",100,100,50,100);
-    returnMainMenuButton = new Button("Return Button","Game Images/returnButton.png",100,150,50,100);
-    playButton = new Button("Play","Game Images/StartButton.png",100,150,50,100);
+	//draw Buttons needed for Menu
+    startButton = new Button("Start Button","images/menu/Button(StartGame).png",360,408,148,473);
+    creditButton = new Button("Credit Button","images/menu/Button(Credits).png",360,570,149,475);
+    returnButton = new Button("Return Button","images/menu/Button(Return).png",360,570,149,475);
+    
+    //draw images needed for menu
+    titleImage = new Sprite("images/menu/title.png",270,18,360,702);
+    
+    playButton = new Button("Play","images/menu/Button(Return).png",360,570,149,475);
     mainMenu = new Menu("Main Menu");
     pauseMenu = new Menu("Pause Menu");
     creditMenu = new Menu("Credit Menu");
 	
+	// adding items to the main menu
 	mainMenu.addItem(startButton);
 	mainMenu.addItem(creditButton);
+	mainMenu.addItem(titleImage);
 	
 	
+	// adding items to the credit menu
+	creditMenu.addItem(titleImage);
+	creditMenu.addItem(returnButton);
 	
-	creditMenu.addItem(returnMainMenuButton);
-	
-	
+	// adding items to the pause menu
 	pauseMenu.addItem(playButton);
 }
 
@@ -73,12 +81,14 @@ function loadGame()
 	var playing = false;
 	console.log("loaded game");
 	createMenus();
-makeBoundary();
-initMeteors();
+	makeBoundary();
+	initMeteors();
 	setInterval(function()
 	{
-		if(gameState == "off" && mainMenu.isEnabled())
+		if(gameState == "off" && mainMenu.enabled && !mainMenu.drawn)
 		{
+			
+			console.log("drawing main menu");
 			mainMenu.draw();
 		}
 		if(startButton.inputEnabled && startButton.isClicked)
@@ -88,20 +98,18 @@ initMeteors();
 		}
 		if(creditButton.inputEnabled && creditButton.isClicked)
 		{
+			//console.log("drawing main menu");
 		    mainMenu.clear();
 			creditMenu.draw();
 		}
-		if(returnMainMenuButton.inputEnabled && returnMainMenuButton.isClicked)
+		if(returnButton.inputEnabled && returnButton.isClicked)
 		{
-			if(paused == true)
-			{
-				pauseMenu.clear();
-			}
-			else 
-			{
-				creditMenu.clear();
-			}
+			creditMenu.clear();
 			mainMenu.draw();
+		}
+		if(paused)
+		{
+			pauseMenu.draw();
 		}
 		if(playButton.inputEnabled && playButton.isClicked)
 		{
@@ -111,18 +119,14 @@ initMeteors();
 		}
 		creditButton.update();
 		startButton.update();
-		returnMainMenuButton.update();
+		returnButton.update();
 		playButton.update();
-		
-	
-		
+
 	 	if(gameState == "on" && !playing)
-		{
-	    
-		game();
-	    playing = true;
+		{    
+			game();
+		    playing = true;
 		}
-		
 		},5);
 		
 	

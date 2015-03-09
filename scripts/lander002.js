@@ -1,7 +1,6 @@
  
  ///Initiating Canvas
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+
 //Debug Bool
 var debug = true;
 
@@ -30,7 +29,7 @@ var opened = false;
 
 //Player Object
 var player = {img:null, x: canvas.width/2, y: canvas.height/2, 
-width: 100, height:100, transX: canvas.width/2, transY: canvas.height/2, sprite: "Phil (Default).png"};
+width: 100, height:100, transX: canvas.width/2, transY: canvas.height/2, sprite: "images/phil/Phil (Default).png"};
 player.img = new Image();
 player.img.src = player.sprite;
 
@@ -65,7 +64,7 @@ var meteors = new Array();
 
 //Image Variables
 var playerImg = new Image();
-playerImg.src = "Phil (Default).png";
+playerImg.src = "images/phil/Phil (Default).png";
 
 function initMeteors(){
 		//meteors.push(new meteor(10,10, 100,100, "Meteor.png"));
@@ -499,10 +498,10 @@ function dirVelocity(dir, speed){
 function modeSwitch(){
 	opened = !opened;
 	if(opened){
-		player.img.src = "Phil (Open).png";
+		player.img.src = "images/phil/Phil (Open).png";
 	}
 	if(!opened){
-		player.img.src = "Phil (Default).png";
+		player.img.src = "images/phil/Phil (Default).png";
 	}
 	if(debug){
 		console.log("Opened set to " + opened);
@@ -515,18 +514,18 @@ function modeSwitch(){
 function makeBoundary(){
 	//top
 	for(var i = 1; i < roomX/50; i++){
-		boundary.push(new meteor(i*50,0, 50,50, "Meteor.png"));
+		boundary.push(new meteor(i*50,0, 50,50, "images/meteors/Meteor.png"));
 
 	}
 	//bottom
 	for(var i = 1; i < roomX/50; i++){
-		boundary.push(new meteor(i*50,roomY, 50,50, "Meteor.png"));
+		boundary.push(new meteor(i*50,roomY, 50,50, "images/meteors/Meteor.png"));
 		
 	}
 	
 	//left
 	for(var i = 0; i < (roomY+50)/50; i++){
-		boundary.push(new meteor(0,i*50,50,50,"Meteor.png"));
+		boundary.push(new meteor(0,i*50,50,50,"images/meteors/Meteor.png"));
 		
 	}
 	//right
@@ -560,7 +559,20 @@ document.onkeyup=function(e){
 	code=window.event?e.keyCode:e.which;
 	key[code] = 0;
 	//Mode Switch
-	if(code == 90){
+	if(code == 27)
+	{
+		console.log("escape key pressed");
+		if(paused == false)
+		{
+			paused = true;
+		}
+		else
+		{
+			paused = false;
+		}
+		
+	}
+	if(code == 90 && !paused){
 		modeSwitch();
 	}
 	
@@ -596,7 +608,7 @@ document.onkeyup=function(e){
 	}
 }
 var rotate = 1;
-xena = new comet(roomX+(roomY/2),roomY/2, 0, 0, "Meteor.png");
+xena = new comet(roomX+(roomY/2),roomY/2, 0, 0, "images/meteors/Meteor.png");
 
 function draw(){
 	//The order things are listed here is the order they're drawn,
@@ -656,12 +668,18 @@ statBars();
 
 
 //Launched on load
-function loadGame(){
-makeBoundary();
-initMeteors();
+function game(){
+
+console.log("in game");
+
 setInterval(function(){
+
+if(!paused)
+{
+	
 controls();
 update();
 draw();
+}
 },5);
 }

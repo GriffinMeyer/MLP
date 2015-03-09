@@ -1,9 +1,11 @@
 
 
-function Button(img, x, y, height, width)
+function Button(name,img, x, y, height, width)
 {
 
+	this.name = name;
 	this.img = new Image();
+	this.img.src = img;
 	this.x = x;
 	this.y = y;
 	this.width = width;
@@ -17,32 +19,6 @@ function Button(img, x, y, height, width)
 }
 
 
-Button.prototype.x = function()
-{
-	return this.x;
-}
-
-Button.prototype.y = function()
-{
-	return this.y;
-}
-
-Button.prototype.width = function()
-{
-	return this.width;
-}
-
-Button.prototype.height = function()
-{
-	return this.height;
-}
-
-
-// returns text on Button
-Button.prototype.getText = function()
-{
-	return this.text;
-}
 
 Button.prototype.isEnabled = function()
 {
@@ -66,6 +42,7 @@ Button.prototype.enableButton = function()
 
 Button.prototype.draw= function()
 {
+//	console.log("drawing");
 	ctx.drawImage(
 		this.img,
 		this.x,
@@ -94,13 +71,16 @@ Button.prototype.update = function()
 	            	this.over = true;
 	            	if(mousePressed)
 	            	{
+	            		
 	            		 // if (typeof this.func === 'function' && !isClicking) 
 	            		 // {
           		    	 // this.func();
          			     // isClicking = true;
          		 	    // }
-         		 	  
-         		 	   	this.isClicked = true;
+         		 	 
+         		 	  	this.isClicked = true;
+         		 	  mousePressed = false;
+         		 	   	
          		 	   
          		 	    
                    }

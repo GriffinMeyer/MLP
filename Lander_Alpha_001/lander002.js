@@ -11,8 +11,8 @@ var health = 100;
 var energy = 100;
 var shield = 100;
 //Level Demensions- Not the same as canvas
-var roomX = 2000;
-var roomY = 750;
+var roomX = 10000;
+var roomY = 2000;
 //Velocity direction values
 var xvel = 0;
 var yvel = 0;
@@ -439,9 +439,9 @@ function update(){
 		disToXena = -(player.transX + player.width - roomX + (roomY/2) + 200);
 		//Logic for comet collision
 		//if player is within 500 pixles of xena
-		if(disToXena < 500){
+		if(disToXena < 400){
 			
-			landerRotate = 180-((disToXena * 180)/(500));
+			landerRotate = 180-((disToXena * 180)/(400));
 			if(landerRotate > 180){
 				landerRotate = 180;
 			}

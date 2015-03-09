@@ -72,6 +72,26 @@ function initMeteors(){
 		//meteors.push(new meteor(10,100,100,100, "Meteor.png"));
 	}
 
+
+var controlFlip = false;
+	
+function randEvent(){
+	setInterval(function(){
+		var random = Math.round(Math.random());
+		if(random == 0){
+			console.log("0");
+			controlFlip = true;
+			setTimeout(function(){
+			controlFlip = false;
+			}, 10000);
+			
+		}
+		if(random == 1){
+			console.log("1");
+		}
+	},15000);
+}
+
 function statBars(){
 	//red to draw health
 	ctx.fillStyle = "red";
@@ -569,25 +589,50 @@ document.onkeyup=function(e){
 	//left
 	if(key[37]){
 		if(energy > 0){
-		dirVelocity("left", globalVel);	
+		if(controlFlip == true){
+			dirVelocity("right", globalVel);
+		}
+		if(controlFlip == false){
+			dirVelocity("left", globalVel);	
+		}
+		
 		}
 		
 	}
 	//right
 	if(key[39]){
 		if(energy > 0){
-		dirVelocity("right", globalVel);
+			if(controlFlip == true){
+				dirVelocity("left", globalVel);
+			}
+			if(controlFlip == false){
+				dirVelocity("right", globalVel);
+			}
+		
 		}
 	}
 	//up
 	if(key[38]){
 		if(energy > 0){
-		dirVelocity("up", globalVel);
+			if(controlFlip == true){
+				dirVelocity("down", globalVel);
+			}
+			if(controlFlip == false){
+				dirVelocity("up", globalVel);
+			}
+		
 		}
 	}
 	//down
 	if(key[40]){if(energy > 0){
-		dirVelocity("down", globalVel);
+		if(controlFlip == true){
+			dirVelocity("up", globalVel);
+				
+			}
+			if(controlFlip == false){
+				dirVelocity("down", globalVel);
+			}
+		
 	}
 	}
 	
@@ -659,6 +704,7 @@ statBars();
 function loadGame(){
 makeBoundary();
 initMeteors();
+randEvent();
 setInterval(function(){
 controls();
 update();

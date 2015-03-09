@@ -74,6 +74,7 @@ function initMeteors(){
 
 
 var controlFlip = false;
+var modeLock = false;
 	
 function randEvent(){
 	setInterval(function(){
@@ -88,6 +89,11 @@ function randEvent(){
 		}
 		if(random == 1){
 			console.log("1");
+			modeLock = true;
+			console.log(modeLock);
+			setTimeout(function(){
+				modeLock = false;
+			}, 5000);
 		}
 	},15000);
 }
@@ -472,6 +478,7 @@ function update(){
 }
 
 function modeUpdate(){
+			
 	if(opened){
 		if(energy <= 100){			
 		energy += .5;
@@ -483,6 +490,7 @@ function modeUpdate(){
 			}
 		}
 	}
+	
 }
 
 function dirVelocity(dir, speed){
@@ -581,7 +589,9 @@ document.onkeyup=function(e){
 	key[code] = 0;
 	//Mode Switch
 	if(code == 90){
+		if(!modeLock){
 		modeSwitch();
+		}
 	}
 	
 };
@@ -640,7 +650,26 @@ document.onkeyup=function(e){
 		
 	}
 }
-var rotate = 1;
+var alpha = 0;
+var fade = false;
+//use fade to make the swap and make the square fade in and out
+function displayEvent(event){
+	if(event == "controlFlip"){
+		ctx.fillStyle = "red";
+		if(alpha < 1){
+			ctx.globalAlpha = alpha;
+			ctx.fillRect(100,100,100,100);
+			alpha += .01;
+		}
+		if(alpha > 1){
+			ctx.fillRect(100,100,100,100);
+		}
+	
+	
+			ctx.globalAlpha = 1;
+}
+}
+
 xena = new comet(roomX+(roomY/2),roomY/2, 0, 0, "Meteor.png");
 
 function draw(){
@@ -656,9 +685,10 @@ ctx.fillRect(0,0, canvas.width, canvas.height);
 ctx.save();
 ctx.translate((canvas.width/2)+(player.width/2), (canvas.height/2)+player.height/2);
 ctx.rotate(-landerRotate*Math.PI/180);
+//ctx.globalAlpha = 0.2;
 ctx.drawImage(player.img, player.x-canvas.width/2-player.width/2, player.y-canvas.height/2-player.height/2,player.width,player.height);
 ctx.restore();
-//ctx.drawImage()
+displayEvent("controlFlip");
 
 
 for(var i = 0; i < meteors.length; i++){

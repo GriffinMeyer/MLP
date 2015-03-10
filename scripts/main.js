@@ -1,8 +1,11 @@
 
 
 var canvas=document.getElementById("canvas");
+var backCanvas=document.getElementById("background");
+var ctx2=canvas.getContext("2d");
 var ctx=canvas.getContext("2d");
-var mousePosition = {
+var mousePosition =
+ {
 	x: 0,
 	y: 0
 };
@@ -38,7 +41,15 @@ var mainMenu;
 var pauseMenu;
 var creditMenu;
 var titleImage;
+var background;
 
+function createBackground()
+{
+	background = new Background("images/background/background.png");
+	background.scrollRight = true;
+	background.getContext(ctx2,backCanvas.width,backCanvas.height);
+	
+}
 // not yet ready, just messing with a sprite sheet for the menu 
 function createMenus()
 {
@@ -81,10 +92,13 @@ function loadGame()
 	var playing = false;
 	console.log("loaded game");
 	createMenus();
+	createBackground();
 	makeBoundary();
 	initMeteors();
+	background.draw();
 	setInterval(function()
 	{
+		
 		if(gameState == "off" && mainMenu.enabled && !mainMenu.drawn)
 		{
 			

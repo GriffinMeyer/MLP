@@ -4,7 +4,7 @@
 function Menu(name, menu)
 {	
 	this.name = name;
-	this.parentMenu = null;
+//	this.parentMenu = null;
 	this.menuItem = [];
 	this.enabled = true;
   //  this.subMenu.push(this);

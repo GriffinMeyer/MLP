@@ -582,6 +582,9 @@ document.onkeyup=function(e){
 	if(key[37]){
 		if(energy > 0){
 		dirVelocity("left", globalVel);	
+	//	background.speed = xvel;
+	//	background.scrollRight = false;
+	//	background.scrollLeft = true;
 		}
 		
 	}
@@ -618,8 +621,8 @@ function draw(){
 //for drawing fresh.
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-ctx.fillRect(0,0, canvas.width, canvas.height);
-
+//ctx.fillRect(0,0, canvas.width, canvas.height);
+background.draw();
 ctx.save();
 ctx.translate((canvas.width/2)+(player.width/2), (canvas.height/2)+player.height/2);
 ctx.rotate(-landerRotate*Math.PI/180);
@@ -676,7 +679,6 @@ setInterval(function(){
 
 if(!paused)
 {
-	
 controls();
 update();
 draw();

@@ -5,6 +5,7 @@ function Button(name,img, x, y, height, width)
 
 	this.name = name;
 	this.img = new Image();
+	this.img.onload = this.onImageLoad;
 	this.img.src = img;
 	this.x = x;
 	this.y = y;
@@ -18,7 +19,10 @@ function Button(name,img, x, y, height, width)
 	this.inputEnabled = false;
 }
 
-
+Button.prototype.onImageLoad = function()
+{
+	console.log("Button Image loaded");
+}
 
 Button.prototype.isEnabled = function()
 {

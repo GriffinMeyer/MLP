@@ -9,6 +9,7 @@ function Sprite(img, x, y, height, width)
     
     
     this.img = new Image();
+    this.img.onload = this.onImageLoad;
 	this.img.src = img;
 	
 	// set x coordinate position 
@@ -20,6 +21,10 @@ function Sprite(img, x, y, height, width)
 	this.width = width;
 }
 
+Sprite.prototype.onImageLoad = function()
+{
+	console.log("Sprite loaded");
+}
 
 
 Sprite.prototype.draw = function()

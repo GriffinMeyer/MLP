@@ -8,7 +8,7 @@ var health = 100;
 var energy = 100;
 var shield = 100;
 //Level Demensions- Not the same as canvas
-var roomX = 3000;
+var roomX = 10000;
 var roomY = 2000;
 //Velocity direction values
 var xvel = 0;
@@ -66,9 +66,9 @@ playerImg.src = "images/phil/Phil (Default).png";
 
 function initMeteors(){
 	meteors.push(new meteor(-100,-100, 100,100, "images/meteors/Meteor.png"));
-    //meteors.push(new meteor(2000,-100,100,100, "images/phil/Meteor.png"));
-    //meteors.push(new meteor(5000,-100, 100,100, "images/phil/Meteor.png"));
-    //meteors.push(new meteor(8000,-100,100,100, "images/phil/Meteor.png"));
+    meteors.push(new meteor(2000,-100,100,100, "images/meteors/Meteor.png"));
+    meteors.push(new meteor(5000,-100, 100,100, "images/meteors/Meteor.png"));
+    meteors.push(new meteor(8000,-100,100,100, "images/meteors/Meteor.png"));
     meteors.push(new meteor(11000,-100, 100,100, "images/meteors/Meteor.png"));
     //meteors.push(new meteor(-200, 800,100,100, "images/phil/Meteor.png"));
     //meteors.push(new meteor(2000, 800, 100,100, "images/phil/Meteor.png"));
@@ -457,7 +457,7 @@ function update(){
 			sqy = Math.pow(Ydis, 2);
 			sqh = sqx + sqy;
 			Hdis = Math.sqrt(sqh);
-			speed = 220/Hdis;
+			speed = 100/Hdis;
 		    angle = Math.atan2(Ydis, Xdis);
 			cosp = Math.cos(angle);
 			//console.log(cosp);

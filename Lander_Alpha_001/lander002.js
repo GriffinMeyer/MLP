@@ -75,13 +75,16 @@ function initMeteors(){
 
 var controlFlip = false;
 var modeLock = false;
-	
+var eventPopped = false;
+var eventTriggered;	
 function randEvent(){
 	setInterval(function(){
 		var random = Math.round(Math.random());
 		if(random == 0){
 			console.log("0");
 			controlFlip = true;
+			eventPopped = true;
+			eventTriggered = "controlFlip";
 			setTimeout(function(){
 			controlFlip = false;
 			}, 10000);
@@ -90,12 +93,14 @@ function randEvent(){
 		if(random == 1){
 			console.log("1");
 			modeLock = true;
+			eventPopped = true;
+			eventTriggered = "modeLocked";
 			console.log(modeLock);
 			setTimeout(function(){
 				modeLock = false;
 			}, 5000);
 		}
-	},15000);
+	},5000);
 }
 
 function statBars(){
@@ -650,24 +655,70 @@ document.onkeyup=function(e){
 		
 	}
 }
-var alpha = 0;
-var fade = false;
+
+var alpha = 1;
+var randAlert = new Image();
+var wait = 1;
+
 //use fade to make the swap and make the square fade in and out
 function displayEvent(event){
-	if(event == "controlFlip"){
-		ctx.fillStyle = "red";
-		if(alpha < 1){
+	//flipped controls
+	if(eventPopped == true){
+			if(event == "controlFlip"){
+				randAlert.src = "flippedAlert.jpg";
+
 			ctx.globalAlpha = alpha;
-			ctx.fillRect(100,100,100,100);
-			alpha += .01;
-		}
-		if(alpha > 1){
-			ctx.fillRect(100,100,100,100);
-		}
-	
+			if(alpha >= 0){				
+			ctx.drawImage(randAlert, canvas.width/2-150, canvas.height-100,300,75);
+			if(wait > 0){
+				wait -= 0.001;
+			}
+			if(wait <= 0){
+				alpha -= .01;
+			}
+			
+			}
+			
+			if(alpha < 0){
+				
+				eventPopped = false;
+				alpha = 1;
+				wait = 1;
+			}
 	
 			ctx.globalAlpha = 1;
 }
+
+}
+//Mode locked
+	if(eventPopped == true){
+			if(event == "modeLocked"){
+				randAlert.src = "lockedAlert.jpg";
+
+			ctx.globalAlpha = alpha;
+			if(alpha >= 0){				
+			ctx.drawImage(randAlert, canvas.width/2-150, canvas.height-100,300,75);
+			if(wait > 0){
+				wait -= 0.001;
+			}
+			if(wait <= 0){
+				alpha -= .01;
+			}
+			
+			}
+			
+			if(alpha < 0){
+				
+				eventPopped = false;
+				alpha = 1;
+				wait = 1;
+			}
+	
+			ctx.globalAlpha = 1;
+}
+
+}
+
 }
 
 xena = new comet(roomX+(roomY/2),roomY/2, 0, 0, "Meteor.png");
@@ -688,7 +739,10 @@ ctx.rotate(-landerRotate*Math.PI/180);
 //ctx.globalAlpha = 0.2;
 ctx.drawImage(player.img, player.x-canvas.width/2-player.width/2, player.y-canvas.height/2-player.height/2,player.width,player.height);
 ctx.restore();
-displayEvent("controlFlip");
+if(eventPopped == true){
+	displayEvent(eventTriggered);
+}
+
 
 
 for(var i = 0; i < meteors.length; i++){

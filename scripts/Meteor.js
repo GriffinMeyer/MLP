@@ -1,4 +1,5 @@
 
+
 var Xdis = player.x - obj.x;
 var Ydis = player.y - obj.y;
 	

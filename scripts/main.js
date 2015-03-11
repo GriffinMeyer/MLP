@@ -42,11 +42,11 @@ var pauseMenu;
 var creditMenu;
 var titleImage;
 var background;
-
+var playing = false;
 function createBackground()
 {
 	background = new Background("images/background/background.png");
-	background.scrollRight = true;
+	background.scrollRight = false;
 	background.getContext(ctx2,backCanvas.width,backCanvas.height);
 	
 }
@@ -89,17 +89,25 @@ function pauseGame()
 
 function loadGame()
 {
-	var playing = false;
+	
 	console.log("loaded game");
 	createMenus();
 	createBackground();
 	makeBoundary();
 	initMeteors();
+	randEvent();
 	background.draw();
+	startGame();
+		
+	
+}
+
+function startGame()
+{
 	setInterval(function()
 	{
 		
-		if(gameState == "off" && mainMenu.enabled && !mainMenu.drawn)
+		if(gameState == "off" && mainMenu.enabled )
 		{
 			
 			console.log("drawing main menu");
@@ -114,11 +122,13 @@ function loadGame()
 		{
 			//console.log("drawing main menu");
 		    mainMenu.clear();
+		    background.draw();
 			creditMenu.draw();
 		}
 		if(returnButton.inputEnabled && returnButton.isClicked)
 		{
 			creditMenu.clear();
+			background.draw();
 			mainMenu.draw();
 		}
 		if(paused)
@@ -142,9 +152,6 @@ function loadGame()
 		    playing = true;
 		}
 		},5);
-		
-	
 }
-
 
 

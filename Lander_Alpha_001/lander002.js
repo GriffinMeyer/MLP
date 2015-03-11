@@ -11,7 +11,7 @@ var health = 100;
 var energy = 100;
 var shield = 100;
 //Level Demensions- Not the same as canvas
-var roomX = 10000;
+var roomX = 3000;
 var roomY = 2000;
 //Velocity direction values
 var xvel = 0;
@@ -483,8 +483,26 @@ function update(){
 		disToXena = -(player.transX + player.width - roomX + (roomY/2) + 200);
 		//Logic for comet collision
 		//if player is within 500 pixles of xena
-		if(disToXena < 400){
-			
+		if(disToXena+200 < 400){
+			if(xvel > 1){
+				xvel -= .1;
+			}
+			yvel = 0;
+			if(player.transY < (roomY/2)+player.height/2){
+				yvel += 0.5;
+			}
+			if(player.transY > (roomY/2)+player.height/2){
+				yvel -= 0.5;
+			}
+			if(disToXena+200 < 0 && xvel != 0){
+				xvel -= 0.01;
+				
+			}
+			if(disToXena+200 > 50){
+				xvel += 0.01;
+				
+			}
+
 			landerRotate = 180-((disToXena * 180)/(400));
 			if(landerRotate > 180){
 				landerRotate = 180;
@@ -647,6 +665,7 @@ document.onkeyup=function(e){
 		
 		}
 	}
+	if(disToXena > 400){
 	//up
 	if(key[38]){
 		if(energy > 0){
@@ -660,7 +679,8 @@ document.onkeyup=function(e){
 		}
 	}
 	//down
-	if(key[40]){if(energy > 0){
+	if(key[40]){
+		if(energy > 0){
 		if(controlFlip == true){
 			dirVelocity("up", globalVel);
 				
@@ -669,6 +689,7 @@ document.onkeyup=function(e){
 				dirVelocity("down", globalVel);
 			}
 		
+	}
 	}
 	}
 	

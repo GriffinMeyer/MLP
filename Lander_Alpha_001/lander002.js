@@ -427,6 +427,7 @@ var disToXena;
 var landerRotate = 0;
 //Update Function
 function update(){
+	healthCondition();
 	//Updating virtual player location data
 	player.transX += xvel;
 	player.transY += yvel;
@@ -575,6 +576,14 @@ function makeBoundary(){
 	}*/
 	
 }
+
+function healthCondition(){
+	if( health <= 0){
+		console.log("0 hp");
+		health = 100;
+	}
+}
+
 //Control setting
 function controls(){
 	//If you only want the function to happen once per keypress

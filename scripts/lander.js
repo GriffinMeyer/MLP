@@ -506,7 +506,8 @@ function update(){
 			}
 		}
 		if(-disToXena-200 >= 0){
-			console.log("Contact");
+			alert("You have landed!");
+			location.reload();
 		}
 }
 
@@ -607,8 +608,8 @@ function makeBoundary(){
 
 function healthCondition(){
 	if( health <= 0){
-		console.log("0 hp");
-		health = 100;
+	alert("You died :(");
+    location.reload();
 	}
 }
 
@@ -644,6 +645,7 @@ document.onkeyup=function(e){
 		
 	}
 	if(code == 90 && !paused){
+		
 		if(!modeLock){
 		modeSwitch();
 		}

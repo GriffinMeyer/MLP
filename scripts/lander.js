@@ -10,6 +10,7 @@ var shield = 100;
 //Level Demensions- Not the same as canvas
 var roomX = 10000;
 var roomY = 2000;
+var score = 0;
 //Velocity direction values
 var xvel = 0;
 var yvel = 0;
@@ -432,6 +433,12 @@ var disToXena;
 var landerRotate = 0;
 //Update Function
 function update(){
+	//updating score
+	if(xvel > 0){
+		score += xvel*0.01;
+	}
+	
+	//console.log(score);
 	healthCondition();
 	//Updating virtual player location data
 	player.transX += xvel;
@@ -836,7 +843,9 @@ if(rotate < 90){
 }
 */
 statBars();
-
+ctx.font="20px Georgia";
+ctx.fillStyle = "white";
+ctx.fillText("Score: " + Math.floor(score), 100,100);
 //this draws a meteor
 //ctx.drawImage(rock.img,10,10,100,100);
 }

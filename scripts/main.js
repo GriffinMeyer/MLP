@@ -1,4 +1,4 @@
-
+ 
 
 var canvas=document.getElementById("canvas");
 var backCanvas=document.getElementById("background");
@@ -110,7 +110,7 @@ function startGame()
 		if(gameState == "off" && mainMenu.enabled )
 		{
 			
-			console.log("drawing main menu");
+			//console.log("drawing main menu");
 			mainMenu.draw();
 		}
 		if(startButton.inputEnabled && startButton.isClicked)

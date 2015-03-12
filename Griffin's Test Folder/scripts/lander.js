@@ -25,6 +25,16 @@ var key = [];
 //Bool for mode
 var opened = false;
 
+function level1(){
+	roomX = 10000;
+    roomY = 2000;
+}
+
+function level2(){
+	roomX = 3000;
+    roomY = 2000;
+}
+
 
 //Player Object
 var player = {img:null, x: canvas.width/2, y: canvas.height/2, 
@@ -599,17 +609,6 @@ function makeBoundary(){
 		boundary.push(new meteor(0,i*50,50,50,"images/meteors/Meteor.png"));
 		
 	}
-	//right
-	//this side is going to be the side
-	// that you need to land on
-	//eventually I will put this in a function or somthing
-	//but for now I'm going to write the code in draw/update to figure
-	//out how stuff works.
-	/*
-	for(var i = 0; i < (roomY+50)/50; i++){
-		boundary.push(new meteor(roomX,i*50,50,50,"Meteor.png"));
-		
-	}*/
 	
 }
 
@@ -851,17 +850,6 @@ ctx.fillText("Score: " + Math.floor(score), 100,100);
 }
 
 
-//Launched on load
-function loadGamea(){
-makeBoundary();
-initMeteors();
-randEvent();
-setInterval(function(){
-controls();
-update();
-draw();
-},5);
-}
 
 function game(){
 

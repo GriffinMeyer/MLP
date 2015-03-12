@@ -103,7 +103,7 @@ function loadGame()
 }
 
 function startGame()
-{
+{	
 	setInterval(function()
 	{
 		

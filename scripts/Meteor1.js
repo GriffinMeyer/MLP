@@ -52,7 +52,7 @@ Meteor.prototype.draw = function()
 
 Meteor.prototype.checkCollision = function(object)
 {
-<<<<<<< HEAD
+/*
     var crash = false;
     var mx1 = this.x;
     var Mx1 = this.x + this.width;
@@ -252,7 +252,5 @@ Meteor.prototype.checkCollision = function(object)
           crash = true;
        }
     }	
-=======
-	
->>>>>>> origin/master
+*/
 }

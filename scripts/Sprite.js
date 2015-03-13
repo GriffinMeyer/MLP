@@ -17,9 +17,15 @@ function Sprite(img, x, y, height, width)
 	
 	// set y coordinate position
 	this.y = y;
+	
+	// set height of image
 	this.height = height;
+	
+	// set width of image
 	this.width = width;
 }
+
+
 
 Sprite.prototype.onImageLoad = function()
 {

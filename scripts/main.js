@@ -1,4 +1,4 @@
- 
+
 
 var canvas=document.getElementById("canvas");
 var backCanvas=document.getElementById("background");
@@ -42,13 +42,48 @@ var pauseMenu;
 var creditMenu;
 var titleImage;
 var background;
+var level = [];
 var playing = false;
+var smallMeteor;
+var smallMeteor2;
+var smallMeteor3;
+var largeMeteor;
+// load levels for game 
+
+
+function loadImages()
+{
+	// load small meteor image
+	smallMeteor = new Sprite("images/meteors/Meteor.png",0,0,50,50);
+	smallMeteor2 = new Sprite("images/meteors/Meteor.png",100,200,50,50);
+	smallMeteor3 = new Sprite("images/meteors/Meteor.png",200,200,50,50);
+	largeMeteor = new Sprite("images/meteors/Meteor.png",0,0,70,70);
+	
+}
+
+
+// this is were we will create the levels and push them to the level array and draw them when needed
+function loadLevels()
+{
+	// creates lvl1 
+	var lvl1 = new Level("level 1", 1200,800);
+	// add boundary image
+	lvl1.addBoundary(largeMeteor);
+	
+	// add meteors to level
+	lvl1.addMeteor(new Meteor(smallMeteor2));
+	lvl1.addMeteor(new Meteor(smallMeteor3));
+	
+	// add background to level
+	lvl1.background = background;
+	
+	level.push(lvl1);
+}
+
 function createBackground()
 {
 	background = new Background("images/background/background.png");
-	background.scrollRight = false;
 	background.getContext(ctx2,backCanvas.width,backCanvas.height);
-	
 }
 // not yet ready, just messing with a sprite sheet for the menu 
 function createMenus()
@@ -89,11 +124,12 @@ function pauseGame()
 
 function loadGame()
 {
-	
+	loadImages();
 	console.log("loaded game");
 	createMenus();
 	createBackground();
-	makeBoundary();
+	//makeBoundary();
+	loadLevels();
 	initMeteors();
 	randEvent();
 	background.draw();
@@ -104,13 +140,15 @@ function loadGame()
 
 function startGame()
 {
+	console.log("drawing menu");
+	
 	setInterval(function()
 	{
-		
+		level[0].draw();
 		if(gameState == "off" && mainMenu.enabled )
 		{
 			
-			//console.log("drawing main menu");
+			console.log("drawing main menu");
 			mainMenu.draw();
 		}
 		if(startButton.inputEnabled && startButton.isClicked)
@@ -146,9 +184,11 @@ function startGame()
 		returnButton.update();
 		playButton.update();
 
+
+// commented out game() so the game wont start, its still not ready yet 
 	 	if(gameState == "on" && !playing)
 		{    
-			game();
+			//game();
 		    playing = true;
 		}
 		},5);

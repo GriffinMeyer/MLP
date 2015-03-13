@@ -19,7 +19,7 @@ function Level(name,width, height)
 	
 	
 	// object controlled by user 
-	//this.player = player;
+	this.player = player;
 	
 	
 	// defines the boundarys of the level
@@ -28,7 +28,7 @@ function Level(name,width, height)
 	
 	
 	// add objects for the game including enemies or scenery
-	this.levelSprites = [];
+	this.meteor = [];
 	
 	
 	// add a boundary comprised of images around the level
@@ -59,17 +59,33 @@ Level.prototype.addBoundary = function(sprite)
 	
 }
 
-
-// update level 
-Level.prototype.update = function()
+Level.prototype.addMeteor = function(meteor)
 {
-	this.background.setSpeed(player.x,player.y);
+	this.meteor.push(meteor);
 }
 
-Level.prototype.draw = function()
+// update level 
+Level.prototype.update = function(player)
 {
-	// Draw the boundary with images if 
-	this.background.draw();
+	this.background.setSpeed(player.x,player.y);
+	
+	// check Collision with player with Meteor ..
+	// for(var i = 0; i < this.meteor.length; i++)
+	// {
+		// this.meteor[i].checkCollision(player);
+	// }
+	
+	
+	// check collision with player and boundary...
+	// this.boundary.checkCollision(player); 
+	
+}
+
+
+
+// draws the boundaries of the level with the specified object
+Level.prototype.drawBoundary = function()
+{
 	if(this.enableBoundary == true)
 	{
 		//drawing top and bottom boundaries 
@@ -91,34 +107,34 @@ Level.prototype.draw = function()
 			
 		}
 	}
-	
-	// draw foreground 
-	// this.forground.draw();
-	
-	// draw background
-	
-	
-	
 }
 
 
-Level.prototype.createBoundary = function()
+// draws all the meteors that were added to the level
+Level.prototype.drawMeteors = function()
 {
-	//top
-	for(var i = 1; i < roomX/50; i++){
-		boundary.push(new meteor(i*50,0, 50,50, "images/meteors/Meteor.png"));
-
-	}
-	//bottom
-	for(var i = 1; i < roomX/50; i++){
-		boundary.push(new meteor(i*50,roomY, 50,50, "images/meteors/Meteor.png"));
-		
-	}
-	
-	//left
-	for(var i = 0; i < (roomY+50)/50; i++){
-		boundary.push(new meteor(0,i*50,50,50,"images/meteors/Meteor.png"));
-		
+	console.log("number of meteors in level: " + this.meteor.length);
+	for(var i = 0; i < this.meteor.length; i++)
+	{
+		this.meteor[i].draw();
 	}
 }
+
+Level.prototype.draw = function()
+{
+	// Draw the boundary with images if 
+	this.background.draw();
+	
+	// draw Boundary
+	this.drawBoundary();
+	this.drawMeteors();
+	// draw player position
+	//player.draw();
+	
+	
+	
+}
+
+
+
 

@@ -17,6 +17,9 @@ function Meteor(sprite)
 
 }
 
+// inherit properties from Sprite
+//Meteor.prototype = new Sprite();
+
 
 // Physics of Meteor 
 
@@ -34,8 +37,20 @@ Meteor.prototype.reduceSpeed = function(objectHitSpeed)
 }
 
 Meteor.prototype.increaseSpeed = function()
+{
+	
+}
 
+
+// draws the meteor and overides the Sprite.draw() function
 Meteor.prototype.draw = function()
 {
-	ctx.drawImage(this.img,this.x,this.y,this.width,this.height);
+	console.log("calling draw for Meteor");
+	ctx.drawImage(this.sprite.img,this.x,this.y,this.width,this.height);
+}
+
+
+Meteor.prototype.checkCollision = function(object)
+{
+	
 }

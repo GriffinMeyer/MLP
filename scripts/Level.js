@@ -34,8 +34,7 @@ function Level(name, player,width, height)
 	// add a boundary comprised of images around the level
 	this.enableBoundary = false;
 	this.boundaryMade = false;
-	this.boundary = [];
-	this.boundaryImage = null;
+	this.boundary = null
 	
 	// set to true if you want to have a time limit on level completion
 	this.timeout = false;
@@ -57,7 +56,7 @@ function Level(name, player,width, height)
 Level.prototype.addBoundary = function(sprite)
 {
 	this.enableBoundary = true;
-	this.boundaryImage = sprite;
+	this.boundary = sprite;
 	
 }
 
@@ -83,7 +82,7 @@ Level.prototype.update = function()
 	
 	// check collision with player and boundary...
 	//this.checkBoundaryCollision(); 
-	  this.checkBoundaryCollision();
+	//  this.checkBoundaryCollision();
 }
 
 
@@ -91,39 +90,45 @@ Level.prototype.update = function()
 
 // draws the boundaries of the level with the specified object
 // it also  updates the boundary that surronds the level
-Level.prototype.makeBoundary = function()
+Level.prototype.drawBoundary = function()
 {
 	if(this.boundaryMade)
 	{
 		return;
 	}
 	
+	var xvel = this.player.xvel;
+	var yvel = this.player,yvel;
+	var maxHeight = this.height - this.boundary.height;
+	var maxWidth = this.width - this.boundary.width;
+	
 	// makes top and bottom boundaries 
-	for(var i = 0; i < ((this.width - this.boundaryImage.width)/this.boundaryImage.width); i++)
+	for(var i = 0; i < ((this.width - this.boundary.width)/this.boundary.width); i++)
 	{
 	//	console.log("adding sprites");
     	// top
-		this.boundary.push(new Sprite (this.boundaryImage.img.src, (this.boundaryImage.width * i) , 0 , this.boundaryImage.width, this.boundaryImage.height));
+    	//this.boundary.push(new Sprite (this.boundary, (this.boundaryImage.width * i) , 0 , this.boundaryImage.width, this.boundaryImage.height));
+		ctx.drawImage(this.boundary.img, (this.boundary.width * i) , 0 , this.boundary.width, this.boundary.height);
 		//bottom
 	//	console.log("adding sprites");
-		this.boundary.push(new Sprite (this.boundaryImage.img.src, (this.boundaryImage.width * i) , (this.height - this.boundaryImage.height), this.boundaryImage.width, this.boundaryImage.height));
+		ctx.drawImage(this.boundary.img, (this.boundary.width * i) , maxHeight, this.boundary.width, this.boundary.height);
 	}
 	// makes Left boundary and right boundarues
-	for(var i = 0; i < ((this.height - this.boundaryImage.height)/this.boundaryImage.height); i++)
+	for(var i = 0; i < ((this.height - this.boundary.height)/this.boundary.height); i++)
 	{
 		console.log("adding sprites");
 		// draw Left
-		this.boundary.push(new Sprite (this.boundaryImage.img.src, 0 , (i * this.boundaryImage.height), this.boundaryImage.width, this.boundaryImage.height));
+		ctx.drawImage(this.boundary.img, 0 , (i * this.boundary.height), this.boundary.width, this.boundary.height);
 		// draw Right
 		//console.log("adding sprites");
-		this.boundary.push(new Sprite (this.boundaryImage.img.src, this.width - this.boundaryImage.width , (i * this.boundaryImage.height), this.boundaryImage.width, this.boundaryImage.height));
+		ctx.drawImage(this.boundary.img, maxWidth , (i * this.boundary.height), this.boundary.width, this.boundary.height);
 		
 	}
 	this.boundaryMade = true;
 }
 
 // draws Boundary
-Level.prototype.drawBoundary = function()
+Level.prototype.drawBoundaryS = function()
 {
 
 		if(this.enableBoundary == true)
@@ -160,7 +165,7 @@ Level.prototype.draw = function()
 	player.draw();
 	
 	// draw Boundary
-	this.makeBoundary();
+	//this.makeBoundary();
 	this.drawBoundary();
 	this.drawMeteors();
 	// draw player position

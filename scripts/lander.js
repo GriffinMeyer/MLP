@@ -25,6 +25,7 @@ var key = [];
 var opened = false;
 
 
+
 //Player Object
 var player = {img:null, x: canvas.width/2, y: canvas.height/2, 
 width: 100, height:100, transX: canvas.width/2, transY: canvas.height/2, sprite: "images/phil/Phil (Default).png"};
@@ -64,18 +65,20 @@ var meteors = new Array();
 var playerImg = new Image();
 playerImg.src = "images/phil/Phil (Default).png";
 
-function initMeteors(){
-	meteors.push(new meteor(-100,-100, 100,100, "images/meteors/Meteor.png"));
-    meteors.push(new meteor(2000,-100,100,100, "images/meteors/Meteor.png"));
-    meteors.push(new meteor(5000,-100, 100,100, "images/meteors/Meteor.png"));
-    meteors.push(new meteor(8000,-100,100,100, "images/meteors/Meteor.png"));
-    meteors.push(new meteor(11000,-100, 100,100, "images/meteors/Meteor.png"));
-    //meteors.push(new meteor(-200, 800,100,100, "images/phil/Meteor.png"));
-    //meteors.push(new meteor(2000, 800, 100,100, "images/phil/Meteor.png"));
-    meteors.push(new meteor(5000, 800,100,100, "images/meteors/Meteor.png"));
-    //meteors.push(new meteor(8000, 800, 100,100, "images/phil/Meteor.png"));
-    //meteors.push(new meteor(11000, 800,100,100, "images/phil/Meteor.png"));
+function initMeteors(level)
+{
+	var maxSize =  0;
+	var numMeteors = Math.random() * (level * 50);
+	var positionX = 0;
+	var positionY = 0;
+	for(var i = 0 ; i < numMeteors; i++)
+	{
+		maxSize = Math.random()  * 150 + 50;
+		positionX = Math.random() * roomX + 1200;
+		positionY = Math.random() * roomY;
+		meteors.push(new meteor(positionX,positionY, maxSize,maxSize, "images/meteors/Meteor.png"));
 	}
+}
 
 
 var controlFlip = false;
@@ -506,9 +509,29 @@ function update(){
 			}
 		}
 		if(-disToXena-200 >= 0){
-			alert("You have landed!");
-			location.reload();
+		
+			nextLevel();
 		}
+}
+
+function nextLevel()
+{
+	console.log("next Level is game paused: " );
+	level += 1;
+	roomX += level *50;
+	player.transY = canvas.height/2;
+	player.transX = canvas.width/2;
+	
+	xvel = 0;
+	yvel = 0;
+	health = 100;
+	shield = 100;
+	energy = 100;
+//	disToXena = roomX;
+	boundary = [];
+	xena = new comet(roomX+(roomY/2),roomY/2, 0, 0, "images/meteors/Meteor.png");
+	makeBoundary();
+	initMeteors(level);
 }
 
 function modeUpdate(){
@@ -634,6 +657,10 @@ document.onkeyup=function(e){
 	code=window.event?e.keyCode:e.which;
 	key[code] = 0;
 	//Mode Switch
+	if(code == 88)
+	{
+		nextLevel(level);
+	}
 	if(code == 27)
 	{
 		console.log("escape key pressed");

@@ -1,8 +1,8 @@
 
 
 var canvas=document.getElementById("canvas");
-var backCanvas=document.getElementById("background");
-var ctx2=canvas.getContext("2d");
+//var backCanvas=document.getElementById("background");
+//var ctx2=canvas.getContext("2d");
 var ctx=canvas.getContext("2d");
 var mousePosition =
  {
@@ -29,6 +29,9 @@ var mousePressed = false;
       mousePressed = false;
     });
 
+// level
+
+var level = 1;
 
 var keys;
 var gameState = "off";
@@ -42,7 +45,7 @@ var pauseMenu;
 var creditMenu;
 var titleImage;
 var background;
-var level = [];
+var levelq = [];
 var playing = false;
 var smallMeteor;
 var smallMeteor2;
@@ -77,13 +80,13 @@ function loadLevels()
 	// add background to level
 	lvl1.background = background;
 	
-	level.push(lvl1);
+	//level.push(lvl1);
 }
 
 function createBackground()
 {
 	background = new Background("images/background/background.png");
-	background.getContext(ctx2,backCanvas.width,backCanvas.height);
+	background.getContext(ctx,canvas.width,canvas.height);
 }
 // not yet ready, just messing with a sprite sheet for the menu 
 function createMenus()
@@ -129,12 +132,12 @@ function loadGame()
 	createMenus();
 	createBackground();
 	makeBoundary();
-	loadLevels();
-	initMeteors();
+	//loadLevels();
+	initMeteors(level);
 	randEvent();
 	background.draw();
 	startGame();
-		
+		mainMenu.draw();
 	
 }
 

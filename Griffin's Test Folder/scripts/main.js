@@ -94,6 +94,7 @@ function loadGame()
 	createMenus();
 	createBackground();
 	makeBoundary();
+	buildMaze();
 	initMeteors();
 	randEvent();
 	background.draw();

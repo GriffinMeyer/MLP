@@ -25,16 +25,6 @@ var key = [];
 //Bool for mode
 var opened = false;
 
-function level1(){
-	roomX = 10000;
-    roomY = 2000;
-}
-
-function level2(){
-	roomX = 3000;
-    roomY = 2000;
-}
-
 
 //Player Object
 var player = {img:null, x: canvas.width/2, y: canvas.height/2, 
@@ -70,6 +60,33 @@ var boundary = new Array();
 //Obstacle array
 var meteors = new Array();
 
+//maze array
+var maze = new Array();
+
+function buildMaze(){
+	maze.push(new meteor(0,600, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(100,600, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(200,600, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(300,600, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(400,600, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(500,600, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(600,600, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(700,600, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(800,600, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(900,600, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(1000,600, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(1500,800, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(1500,700, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(1500,600, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(1500,500, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(1500,400, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(1500,300, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(1500,200, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(1500,100, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(1500,0, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(1000,700, 100,100, "images/meteors/Meteor.png"));
+	maze.push(new meteor(1000,800, 100,100, "images/meteors/Meteor.png"));
+}
 
 //Image Variables
 var playerImg = new Image();
@@ -464,6 +481,12 @@ function update(){
 			obj.x -= xvel;
 			obj.y -= yvel;
 		}
+		
+		for(var i = 0; i < maze.length; i++){
+			var obj = maze[i];
+			obj.x -= xvel;
+			obj.y -= yvel;
+		}
 	//updating the array for obstacle meteors
 	for(var i = 0; i < meteors.length; i++){
 		
@@ -819,6 +842,10 @@ var obj = boundary[i];
 ctx.drawImage(obj.img,obj.x,obj.y,obj.width,obj.height);
 }
 
+for(var i = 0; i < maze.length; i++){
+var obj = maze[i];
+ctx.drawImage(obj.img,obj.x,obj.y,obj.width,obj.height);
+}
 //drawing the comet
 ctx.beginPath();
 ctx.arc(xena.x-roomY/2,xena.y+25,roomY/2,0,2*Math.PI);

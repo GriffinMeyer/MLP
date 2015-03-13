@@ -3,18 +3,12 @@
 <canvas id="canvas" width = 1200 height = 800></canvas>
 <canvas id="background" width="1200" height="800"></canvas>
 
-<audio id="Title">
-<source src="Audio/Music/Rhodes Loop.wav" type="audio/wav" /></audio>
-<audio id="Level1">
-    <source src="Audio/Music/Title Screen (V.1).mp3" type="audio/mpeg"/></audio>
-<audio id="Level2">
-    <source src="Audio/Music/Turn Up Title.mp3" type="audio/mpeg"/></audio>
-<audio id="Collision">
-    <source src="Audio/SFX/Metal Collision (Crashing into Meteor) .ogg" type="audio/ogg"/></audio>
-<audio id="Death">
-    <source src="Audio/SFX/Small Explosion.wav" type="audio/wav"/></audio>
-<audio id="Charging">
-    <source src="Audio/SFX/Charging Loop (Phil V.2).ogg" type="audio/ogg"/></audio>   
+<audio autoplay loop id="titleSnd" src="Audio/Music/Rhodes Loop.wav" type="audio/wav"></audio>
+<audio id="level1Snd" src="Audio/Music/Title Screen (V.1).mp3" type="audio/mpeg" preload="auto"></audio>
+<audio id="level2Snd" src="Audio/Music/Turn Up Title.mp3" type="audio/mpeg"preload="auto"></audio>
+<audio id="collisionSnd" src="Audio/SFX/Metal Collision (Crashing into Meteor) .ogg" type="audio/ogg" preload="auto"></audio>
+<audio id="deathSnd" src="Audio/SFX/Small Explosion.wav" type="audio/wav"preload="auto"></audio>
+<audio id="chargingSnd" src="Audio/SFX/Charging Loop (Phil V.2).ogg" type="audio/ogg" preload="auto"></audio>   
 
     
 <script src = "scripts/Menu.js"></script>

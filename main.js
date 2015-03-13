@@ -40,6 +40,7 @@ var creditButton;
 var mainMenu;
 var pauseMenu;
 var creditMenu;
+var title;
 
 // not yet ready, just messing with a sprite sheet for the menu 
 function createMenus()
@@ -53,11 +54,10 @@ function createMenus()
     pauseMenu = new Menu("Pause Menu");
     creditMenu = new Menu("Credit Menu");
 	
+	
 	mainMenu.addItem(startButton);
 	mainMenu.addItem(creditButton);
-	Title = document.getElementById("Title");
-	Title.play();
-	
+
 	
 	
 	creditMenu.addItem(returnMainMenuButton);
@@ -126,7 +126,9 @@ function loadGame()
 		game();
 	    playing = true;
 		}
-		
+		title = document.getElementById("titleSnd");
+		title.play();
+	 
 		},5);
 		
 	

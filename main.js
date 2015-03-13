@@ -55,6 +55,8 @@ function createMenus()
 	
 	mainMenu.addItem(startButton);
 	mainMenu.addItem(creditButton);
+	Title = document.getElementById("Title");
+	Title.play();
 	
 	
 	

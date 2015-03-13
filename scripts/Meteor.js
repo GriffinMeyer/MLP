@@ -9,7 +9,7 @@ var sqh = sqx + sqy;
 	
 var Hdis = Math.sqrt(sqh);
 	
-var speed = 3/Hdis;
+var speed = (100/Hdis) + Math.random() * 5;
 	
 var angle = Math.atan2(Ydis, Xdis);
 	

@@ -4,12 +4,16 @@ var canvas=document.getElementById("canvas");
 var backCanvas=document.getElementById("background");
 var ctx2=canvas.getContext("2d");
 var ctx=canvas.getContext("2d");
+
+var key = [];
 var mousePosition =
  {
 	x: 0,
 	y: 0
 };
 
+var controlFlip = false;
+var modeLock = false;
 var mousePressed = false;
 
     canvas.addEventListener('mousemove', function(event)
@@ -30,6 +34,122 @@ var mousePressed = false;
     });
 
 
+
+// controls for player
+function controls()
+{
+	//If you only want the function to happen once per keypress
+	//Put it within the document.onkeydown functions
+	//else, if you want something like continues movement
+	//while a key is pressed, put it outside the functions.
+	//check keyup
+	document.onkeydown=function(e)
+	{
+	    code=window.event?e.keyCode:e.which;
+	    key[code]=1;
+	};
+	
+	//Key down Checking Function
+	document.onkeyup=function(e)
+	{
+		code=window.event?e.keyCode:e.which;
+		key[code] = 0;
+		//Mode Switch
+		if(code == 27)
+		{
+		
+			if(paused == false)
+			{
+				paused = true;
+			}
+			else
+			{
+				paused = false;
+			}
+			
+		}
+		if(code == 90 && !paused)
+		{	
+			if(!modeLock)
+			{
+			player.modeSwitch();
+			}
+		}
+		
+	};
+	
+	
+	//For movement
+	//left
+	if(key[37])
+	{
+		if(player.energy > 0)
+		{
+			if(controlFlip == true)
+			{
+				player.dirVelocity("right");
+			}
+			if(controlFlip == false)
+			{
+				player.dirVelocity("left");	
+			}
+		}
+		
+	}
+	//right
+	if(key[39])
+	{
+		if(player.energy > 0)
+		{
+			if(controlFlip == true)
+			{
+				player.dirVelocity("left");
+			}
+			if(controlFlip == false)
+			{
+				player.dirVelocity("right");
+			}
+		}
+	}
+	
+	// removed distance to Xena temporarily 
+	//up
+	if(key[38])
+	{
+		if(player.energy > 0)
+		{
+			if(controlFlip == true)
+			{
+				player.dirVelocity("down");
+			}
+			if(controlFlip == false)
+			{
+				player.dirVelocity("up");
+			}
+		
+		}
+	}
+	//down
+	if(key[40])
+	{
+		if(player.energy > 0)
+		{
+			if(controlFlip == true)
+			{
+				player.dirVelocity("up");
+					
+			}
+			if(controlFlip == false)
+			{
+				player.dirVelocity("down");
+			}
+		
+		}
+	}
+}
+
+
+
 var keys;
 var gameState = "off";
 var paused = false;
@@ -47,8 +167,14 @@ var playing = false;
 var smallMeteor;
 var smallMeteor2;
 var smallMeteor3;
+
 var largeMeteor;
+
+// Phil
+var player;
+var playerImage;
 // load levels for game 
+
 
 
 function loadImages()
@@ -59,14 +185,19 @@ function loadImages()
 	smallMeteor3 = new Sprite("images/meteors/Meteor.png",200,200,50,50);
 	largeMeteor = new Sprite("images/meteors/Meteor.png",0,0,70,70);
 	
+	// load image for Phil
+	playerImage = new Sprite("images/phil/Phil (Default).png",canvas.width/2, canvas.height/2,100,100)
+	
 }
+
 
 
 // this is were we will create the levels and push them to the level array and draw them when needed
 function loadLevels()
 {
+	player = new Phil(playerImage);
 	// creates lvl1 
-	var lvl1 = new Level("level 1", 1200,800);
+	var lvl1 = new Level("level 1", player, 1200,800);
 	// add boundary image
 	lvl1.addBoundary(largeMeteor);
 	
@@ -128,9 +259,9 @@ function loadGame()
 	console.log("loaded game");
 	createMenus();
 	createBackground();
-	makeBoundary();
+	//makeBoundary();
 	loadLevels();
-	initMeteors();
+	//initMeteors();
 	randEvent();
 	background.draw();
 	startGame();
@@ -141,14 +272,13 @@ function loadGame()
 function startGame()
 {
 	console.log("drawing menu");
-	
+	background.draw();
 	setInterval(function()
 	{
-	//	level[0].draw();
+		
 		if(gameState == "off" && mainMenu.enabled )
 		{
 			
-			console.log("drawing main menu");
 			mainMenu.draw();
 		}
 		if(startButton.inputEnabled && startButton.isClicked)
@@ -183,15 +313,60 @@ function startGame()
 		startButton.update();
 		returnButton.update();
 		playButton.update();
-
-
+		
 // commented out game() so the game wont start, its still not ready yet 
-	 	if(gameState == "on" && !playing)
+	 	if(gameState == "on")
 		{    
-			game();
-		    playing = true;
+		
+			//game();
+			controls();
+			level[0].update(player);
+			level[0].draw();
+			
+		   // playing = true;
 		}
 		},5);
+}
+
+
+// generates random event
+function randEvent(){
+	setInterval(function(){
+		var random = Math.round(Math.random());
+		if(random == 0){
+			console.log("0");
+			controlFlip = true;
+			eventPopped = true;
+			eventTriggered = "controlFlip";
+			setTimeout(function(){
+			controlFlip = false;
+			}, 10000);
+			
+		}
+		if(random == 1){
+			console.log("1");
+			modeLock = true;
+			eventPopped = true;
+			eventTriggered = "modeLocked";
+			console.log(modeLock);
+			setTimeout(function(){
+				modeLock = false;
+			}, 5000);
+		}
+	},30000);
+}
+
+function statBars(){
+	//red to draw health
+	ctx.fillStyle = "red";
+	ctx.fillRect((canvas.width/2)-(energy*6)/2,canvas.height-10,energy*6, 10);
+	ctx.fillStyle = "blue";
+	ctx.fillRect((canvas.width/2)-(shield*6)/2,canvas.height-20,shield*6, 10);
+	ctx.fillStyle = "green";
+	ctx.fillRect((canvas.width/2)-(health*6)/2,canvas.height-30,health*6, 10);
+	//back to black
+	ctx.fillStyle = "black";
+	
 }
 
 

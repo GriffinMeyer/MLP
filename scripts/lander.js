@@ -10,7 +10,6 @@ var shield = 100;
 //Level Demensions- Not the same as canvas
 var roomX = 10000;
 var roomY = 2000;
-var score = 0;
 //Velocity direction values
 var xvel = 0;
 var yvel = 0;
@@ -433,12 +432,6 @@ var disToXena;
 var landerRotate = 0;
 //Update Function
 function update(){
-	//updating score
-	if(xvel > 0){
-		score += xvel*0.01;
-	}
-	
-	//console.log(score);
 	healthCondition();
 	//Updating virtual player location data
 	player.transX += xvel;
@@ -584,18 +577,21 @@ function modeSwitch(){
 
 function makeBoundary(){
 	//top
-	for(var i = 1; i < roomX/50; i++){
+	for(var i = 1; i < roomX/50; i++)
+	{
 		boundary.push(new meteor(i*50,0, 50,50, "images/meteors/Meteor.png"));
 
 	}
 	//bottom
-	for(var i = 1; i < roomX/50; i++){
+	for(var i = 1; i < roomX/50; i++)
+	{
 		boundary.push(new meteor(i*50,roomY, 50,50, "images/meteors/Meteor.png"));
 		
 	}
 	
 	//left
-	for(var i = 0; i < (roomY+50)/50; i++){
+	for(var i = 0; i < (roomY+50)/50; i++)
+	{
 		boundary.push(new meteor(0,i*50,50,50,"images/meteors/Meteor.png"));
 		
 	}
@@ -820,6 +816,7 @@ var obj = boundary[i];
 ctx.drawImage(obj.img,obj.x,obj.y,obj.width,obj.height);
 }
 
+
 //drawing the comet
 ctx.beginPath();
 ctx.arc(xena.x-roomY/2,xena.y+25,roomY/2,0,2*Math.PI);
@@ -843,9 +840,7 @@ if(rotate < 90){
 }
 */
 statBars();
-ctx.font="20px Georgia";
-ctx.fillStyle = "white";
-ctx.fillText("Score: " + Math.floor(score), 100,100);
+
 //this draws a meteor
 //ctx.drawImage(rock.img,10,10,100,100);
 }

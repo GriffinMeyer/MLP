@@ -9,6 +9,9 @@ function Meteor(sprite)
 	// set speed at which the meteor moves
 	this.speed = 0;
 	
+	// acceleration for Meteor
+	this.acc = 0.01;
+	
 	// set size of metoer
 	this.size = 1;
 	

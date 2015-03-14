@@ -982,6 +982,7 @@ statBars();
 ctx.font="20px Georgia";
 ctx.fillStyle = "white";
 ctx.fillText("Score: " + Math.floor(score), 100,100);
+ctx.fillText("Level: " + level, 100,120);
 
 //this draws a meteor
 //ctx.drawImage(rock.img,10,10,100,100);

@@ -1,6 +1,3 @@
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-
 var Pluto = {img: null, x: 800, y: 0,
              width: 400, height: canvas.height, sprite: "Pluto.png"};
 Pluto.img = new Image();

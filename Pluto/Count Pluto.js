@@ -105,14 +105,19 @@ function phase2(){
 		   sqy = Math.pow(Ydis, 2);
 		   sqh = sqx + sqy;
 		   Hdis = Math.sqrt(sqh);
-		   speed = 220/Hdis;
+		   speed = 80/Hdis;
 	       angle = Math.atan2(Ydis, Xdis);
 		   cosp = Math.cos(angle);
 		   Xspeed = speed * cosp;
 		   sinp = Math.sin(angle);
 		   Yspeed = speed * sinp;
-		   obj.x += Xspeed - xvel;
-		   obj.y += Yspeed - yvel;
+		   if(Hdis <= 600){
+		       obj.x += Xspeed - xvel;
+		   	   obj.y += Yspeed - yvel;
+		   }else{
+		   	   obj.x -= xvel;
+		   	   obj.y -= yvel;
+		   }
 		   collision(obj,player);
         } 
   }, 5);

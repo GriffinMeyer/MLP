@@ -72,8 +72,9 @@ function loadImages()
     instructPage2 = new Sprite("images/menu/InstructionPage2.png",247,95,467,782);
     instructPage3 = new Sprite("images/menu/InstructionPage3.png",247,95,467,782);
     instructPage4 = new Sprite("images/menu/InstructionPage4.png",247,95,467,782);
-    instructPage5 = new Sprite("images/menu/InstructionPage5.png",247,95,467,782);
+    instructPage5 = new Sprite("images/menu/InstructionPage5.png",247,95,549,1121);
     disabledbackButton = new Sprite("images/buttons/backButtonDisabled.png",176,684,89,256)
+    disablednextButton = new Sprite("images/buttons/nextDisableButton.png",828,684,89,256)
     
 }
 
@@ -158,10 +159,10 @@ function createMenus()
 	instructionPage4.addItem(instructPage4);
 	
 	// add instructions page 5 menu
-	instructionPage4.addButton(nextButton);
-	instructionPage4.addButton(backButton);
-	instructionPage4.addButton(mainButton);
-	instructionPage4.addItem(instructPage4);
+	instructionPage5.addItem(disablednextButton);
+	instructionPage5.addButton(backButton);
+	instructionPage5.addButton(mainButton);
+	instructionPage5.addItem(instructPage5);
 	
 }
 
@@ -247,6 +248,12 @@ function startGame()
 			    background.draw();
 				instructionPage4.draw();
 			}
+			else if(instructionPage4.isEnabled())
+			{
+				instructionPage4.clear();
+			    background.draw();
+				instructionPage5.draw();
+			}
 		    
 		}
 		if(backButton.inputEnabled && backButton.isClicked)
@@ -268,6 +275,12 @@ function startGame()
 				instructionPage4.clear();
 			    background.draw();
 				instructionPage3.draw();
+			}
+			else if(instructionPage5.isEnabled())
+			{
+				instructionPage5.clear();
+			    background.draw();
+				instructionPage4.draw();
 			}
 		}
 		if(mainButton.inputEnabled && mainButton.isClicked)

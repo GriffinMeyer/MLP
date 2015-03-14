@@ -161,6 +161,7 @@ function startGame()
 			mainMenu.clear();
 			music.stop('title');
 			music.play('level1');
+			music.volume(0.25);
 			gameState = "on";
 		}
 		if(creditButton.inputEnabled && creditButton.isClicked)
@@ -178,6 +179,7 @@ function startGame()
 		}
 		if(paused)
 		{
+			music.pause('level1');
 			pauseMenu.draw();
 		}
 		if(playButton.inputEnabled && playButton.isClicked)

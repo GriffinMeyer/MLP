@@ -8,7 +8,7 @@ var health = 100;
 var energy = 100;
 var shield = 100;
 //Level Demensions- Not the same as canvas
-var roomX = 10000;
+var roomX = 4000;
 var roomY = 2000;
 //Velocity direction values
 var xvel = 0;
@@ -520,6 +520,7 @@ var disToXena;
 var landerRotate = 0;
 //Update Function
 function update(){
+	//console.log(yvel);
 	healthCondition();
 	//Updating virtual player location data
 	player.transX += xvel;
@@ -568,6 +569,7 @@ function update(){
 		disToXena = -(player.transX + player.width - roomX + (roomY/2) + 200);
 		//Logic for comet collision
 		//if player is within 500 pixles of xena
+		/*
 		if(disToXena+200 < 400){
 			if(xvel > 1){
 				xvel -= .1;
@@ -596,7 +598,7 @@ function update(){
 		if(-disToXena-200 >= 0){
 		
 			nextLevel();
-		}
+		}*/
 }
 
 function nextLevel()
@@ -615,7 +617,7 @@ function nextLevel()
 //	disToXena = roomX;
 	boundary = [];
 	meteors = [];
-	xena = new comet(roomX+(roomY/2),roomY/2, 0, 0, "images/meteors/Meteor.png");
+	xena = new comet(roomX-100,0, 100, roomY, "images/meteors/Meteor.png");
 	makeBoundary();
 	initMeteors(level);
 }
@@ -704,17 +706,6 @@ function makeBoundary(){
 		boundary.push(new meteor(0,i*50,50,50,"images/meteors/Meteor.png"));
 		
 	}
-	//right
-	//this side is going to be the side
-	// that you need to land on
-	//eventually I will put this in a function or somthing
-	//but for now I'm going to write the code in draw/update to figure
-	//out how stuff works.
-	/*
-	for(var i = 0; i < (roomY+50)/50; i++){
-		boundary.push(new meteor(roomX,i*50,50,50,"Meteor.png"));
-		
-	}*/
 	
 }
 
@@ -794,7 +785,6 @@ document.onkeyup=function(e){
 		
 		}
 	}
-	if(disToXena > 400){
 	//up
 	if(key[38]){
 		if(energy > 0){
@@ -820,7 +810,7 @@ document.onkeyup=function(e){
 		
 	}
 	}
-	}
+	
 	
 	if(key[90]){
 		
@@ -892,7 +882,7 @@ function displayEvent(event){
 
 }
 
-xena = new comet(roomX+(roomY/2),roomY/2, 0, 0, "images/meteors/Meteor.png");
+xena = new comet(roomX-100,0, 100, roomY, "images/meteors/Meteor.png");
 
 function draw(){
 	//The order things are listed here is the order they're drawn,
@@ -931,11 +921,19 @@ ctx.drawImage(obj.img,obj.x,obj.y,obj.width,obj.height);
 
 
 //drawing the comet
+
+ctx.fillStyle = "#B5916C";
+ctx.fillRect(xena.x,100,100,100);
+//ctx.fillStyle = "#00FF00";
+//ctx.fillRect(0,0,canvas.width,canvas.height)
+
+/*
 ctx.beginPath();
 ctx.arc(xena.x-roomY/2,xena.y+25,roomY/2,0,2*Math.PI);
 ctx.stroke();
 ctx.fillStyle = "#FFFF99";
-ctx.fill();
+ctx.fill();*/
+
 
 
 //HOW TO ROTATE STUFF

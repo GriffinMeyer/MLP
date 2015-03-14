@@ -458,8 +458,6 @@ function obstacleCollision(image1, image2){
 
 var Xdis;
 var Ydis;
-var randomX;
-var randomY;
 var sqx;
 var sqy;
 var sqh;
@@ -497,8 +495,6 @@ function update(){
 			obj = meteors[i];
 			Xdis = player.x - obj.x;
 			Ydis = player.y - obj.y;
-			randomX = (Math.random() * 10) - 5;
-			randomY = (Math.random() * 10) - 5;
 			sqx = Math.pow(Xdis, 2);
 			sqy = Math.pow(Ydis, 2);
 			sqh = sqx + sqy;
@@ -515,8 +511,8 @@ function update(){
 			    obj.x += Xspeed - xvel;
 			    obj.y += Yspeed - yvel;
 			}else{
-				obj.x += randomX - xvel;
-				obj.y += randomY - yvel;
+				obj.x -= xvel;
+				obj.y -= yvel;
 			}
 			obstacleCollision(obj,player); 
 			if(Xdis >= 1000){

@@ -144,6 +144,8 @@ function loadGame()
 function startGame()
 {
 	console.log("drawing menu");
+	music.play('title');
+	music.volume(0.3);
 	
 	setInterval(function()
 	{
@@ -157,6 +159,9 @@ function startGame()
 		if(startButton.inputEnabled && startButton.isClicked)
 		{
 			mainMenu.clear();
+			music.stop('title');
+			music.play('level1');
+			music.volume(0.25);
 			gameState = "on";
 		}
 		if(creditButton.inputEnabled && creditButton.isClicked)
@@ -174,6 +179,7 @@ function startGame()
 		}
 		if(paused)
 		{
+			music.pause('level1');
 			pauseMenu.draw();
 		}
 		if(playButton.inputEnabled && playButton.isClicked)

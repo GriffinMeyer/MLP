@@ -39,8 +39,7 @@ var paused = false;
 
 
 // declare background Image
-var background;
-var levelq = [];
+
 var playing = false;
 
 
@@ -66,6 +65,7 @@ function loadImages()
 {
 	  //draw images needed for menu
     titleImage = new Sprite("images/menu/title.png",270,18,360,702);
+    creditImage = new Sprite("images/menu/credits.png",360,18,461,471);
     
     // page 1 of instructions 
     instructPage1 = new Sprite("images/menu/InstructionPage1.png",78,95,467,782);
@@ -123,7 +123,7 @@ function createMenus()
 	 
 	
 	// adding items to the credit menu
-	creditMenu.addItem(titleImage);
+	creditMenu.addItem(creditImage);
 	creditMenu.addButton(returnButton);
 	
 	

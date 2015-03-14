@@ -6,6 +6,7 @@ function Menu(name, menu)
 	this.name = name;
 //	this.parentMenu = null;
 	this.menuItem = [];
+	this.menuButton = [];
 	this.enabled = true;
   //  this.subMenu.push(this);
 }
@@ -27,13 +28,6 @@ Menu.prototype.isEnabled = function()
 }
 
 //---------------- Manipulation Funcitons-------------
-// 
-// Menu.prototype.addSubMenu = function(name)
-// {	
-	// name.parentMenu = this;
-	// this.subMenu.push(name);
-// }
-
 
 Menu.prototype.disable = function()
 {
@@ -50,26 +44,58 @@ Menu.prototype.addItem = function(item)
     this.menuItem.push(item);
 }
 
+Menu.prototype.addButton = function(button, disabled)
+{
+	if(disabled === 'undefined')
+	{
+		disabled = false;
+	}
+	
+	console.log(disabled);
+	if(disabled == true)
+	{
+		button.inputEnabled = false;
+	}
+	
+	this.menuButton.push(button);
+}
+
 Menu.prototype.removeItem = function(index)
 {
 		this.menuItem[index].clear();
 }
 
-Menu.prototype.clear = function()
+
+Menu.prototype.disableMenuButtons = function()
 {
-	for(var i = 0; i < this.menuItem.length;i++)
+	for(var i = 0; i < this.menuButton.length;i++)
 	{
-		
-		this.menuItem[i].clear();
+		this.menuButton[i].inputEnabled = false;
 	}
-	this.enabled = false;
 }
+// 
+// Menu.prototype.clear = function()
+// {
+	// for(var i = 0; i < this.menuItem.length;i++)
+	// {
+// 		
+		// this.menuItem[i].clear();
+	// }
+	// this.enabled = false;
+// }
+
+
 
 Menu.prototype.draw = function()
 {
 	for(var i = 0; i < this.menuItem.length;i++)
 	{
 		this.menuItem[i].draw();
+	}
+	
+	for(var i = 0; i < this.menuItem.length;i++)
+	{
+		this.menuButton[i].draw();
 	}
 	this.enabled = true;
 }

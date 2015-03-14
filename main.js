@@ -87,12 +87,12 @@ function loadGame()
 		}
 		if(startButton.inputEnabled && startButton.isClicked)
 		{
-			mainMenu.clear();
+			//mainMenu.clear();
 			gameState = "on";
 		}
 		if(creditButton.inputEnabled && creditButton.isClicked)
 		{
-		    mainMenu.clear();
+		 //   mainMenu.clear();
 			creditMenu.draw();
 		}
 		if(returnMainMenuButton.inputEnabled && returnMainMenuButton.isClicked)

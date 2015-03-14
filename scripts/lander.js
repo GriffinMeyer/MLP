@@ -150,6 +150,7 @@ function obstacleCollision(image1, image2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 10;
           else if(shield <= 0) health -= 10;
+          else if(opened = true) health -= 10;
           image1.x = 2200;
           image1.y = Math.random() * 800;
         
@@ -157,18 +158,21 @@ function obstacleCollision(image1, image2){
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 10;
           else if(shield <= 0) health -= 10;
+          else if(opened = true) health -= 10;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 10;
           else if(shield <= 0) health -= 10;
+          else if(opened = true) health -= 10;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 10;
           else if(shield <= 0) health -= 10;
+          else if(opened = true) health -= 10;
           image1.x = 2200;
           image1.y = Math.random() * 800;
        }  
@@ -178,6 +182,7 @@ function obstacleCollision(image1, image2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          else if(opened = true) health -= 20;
           image1.x = 2200;
           image1.y = Math.random() * 800;
         
@@ -190,12 +195,14 @@ function obstacleCollision(image1, image2){
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          else if(opened = true) health -= 20;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          else if(opened = true) health -= 20;
           image1.x = 2200;
           image1.y = Math.random() * 800;
        } 
@@ -205,24 +212,28 @@ function obstacleCollision(image1, image2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          else if(opened = true) health -= 20;
           image1.x = 2200;
           image1.y = Math.random() * 800;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          else if(opened = true) health -= 20;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          else if(opened = true) health -= 20;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          else if(opened = true) health -= 20;
           image1.x = 2200;
           image1.y = Math.random() * 800;
        }
@@ -232,24 +243,28 @@ function obstacleCollision(image1, image2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          else if(opened = true) health -= 20;
           image1.x = 2200;
           image1.y = Math.random() * 800;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          else if(opened = true) health -= 20;
           image1.x = 1800;
           image1.y = 350;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          else if(opened = true) health -= 20;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
+          else if(opened = true) health -= 20;
           image1.x = 2200;
           image1.y = Math.random() * 800;
        }
@@ -258,51 +273,59 @@ function obstacleCollision(image1, image2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
        }
     
-    //1 <= x < 2, 2 <= y 3
+    //1 <= x < 2, 2 <= y < 3
     }else if(1 <= Math.abs(xvel) < 2 && 2 <= Math.abs(yvel) < 3){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
        }
@@ -312,24 +335,28 @@ function obstacleCollision(image1, image2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
        }
@@ -339,24 +366,28 @@ function obstacleCollision(image1, image2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
        }
@@ -366,24 +397,28 @@ function obstacleCollision(image1, image2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
+          else if(opened = true) health -= 30;
           image1.x = 2200;
           image1.y = Math.random() * 800;
        }
@@ -393,24 +428,28 @@ function obstacleCollision(image1, image2){
     	if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 40;
           else if(shield <= 0) health -= 40;
+          else if(opened = true) health -= 40;
           image1.x = 2200;
           image1.y = Math.random() * 800;
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 40;
           else if(shield <= 0) health -= 40;
+          else if(opened = true) health -= 40;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 40;
           else if(shield <= 0) health -= 40;
+          else if(opened = true) health -= 40;
           image1.x = 2200;
           image1.y = Math.random() * 800;
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 40;
           else if(shield <= 0) health -= 40;
+          else if(opened = true) health -= 40;
           image1.x = 2200;
           image1.y = Math.random() * 800;
        }
@@ -419,6 +458,8 @@ function obstacleCollision(image1, image2){
 
 var Xdis;
 var Ydis;
+var randomX;
+var randomY;
 var sqx;
 var sqy;
 var sqh;
@@ -456,11 +497,13 @@ function update(){
 			obj = meteors[i];
 			Xdis = player.x - obj.x;
 			Ydis = player.y - obj.y;
+			randomX = (Math.random() * 10) - 5;
+			randomY = (Math.random() * 10) - 5;
 			sqx = Math.pow(Xdis, 2);
 			sqy = Math.pow(Ydis, 2);
 			sqh = sqx + sqy;
 			Hdis = Math.sqrt(sqh);
-			speed = 100/Hdis;
+			speed = 80/Hdis;
 		    angle = Math.atan2(Ydis, Xdis);
 			cosp = Math.cos(angle);
 			//console.log(cosp);
@@ -468,8 +511,13 @@ function update(){
 			sinp = Math.sin(angle);
 			//console.log(sinp);
 			Yspeed = speed * sinp;
-			obj.x += Xspeed - xvel;
-			obj.y += Yspeed - yvel;
+			if(Hdis <= 600){
+			    obj.x += Xspeed - xvel;
+			    obj.y += Yspeed - yvel;
+			}else{
+				obj.x += randomX - xvel;
+				obj.y += randomY - yvel;
+			}
 			obstacleCollision(obj,player); 
 			if(Xdis >= 1000){
 				obj.x = 2200;

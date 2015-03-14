@@ -14,7 +14,7 @@ var roomY = 2000;
 var xvel = 0;
 var yvel = 0;
 //Acceleration
-var globalVel = .01;
+var globalVel = .015;
 //Maximum speed the lander can travel;
 var maxVel = 3;
 
@@ -577,6 +577,7 @@ function nextLevel()
 	energy = 100;
 //	disToXena = roomX;
 	boundary = [];
+	meteors = [];
 	xena = new comet(roomX+(roomY/2),roomY/2, 0, 0, "images/meteors/Meteor.png");
 	makeBoundary();
 	initMeteors(level);

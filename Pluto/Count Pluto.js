@@ -1,46 +1,44 @@
 var Pluto = {img: null, x: 800, y: 0,
-             width: 400, height: canvas.height, sprite: "Pluto.png"};
+             width: 400, height: canvas.height, sprite: "images/Pluto/Pluto.png"};
 Pluto.img = new Image();
 Pluto.img.src = Pluto.sprite;
 
 var Charon = {img: null, x: 1200, y: 250,
-             width: 300, height: 300, sprite: "Charon.png"};
+             width: 300, height: 300, sprite: "images/Pluto/Charon.png"};
 Charon.img = new Image();
 Charon.img.src = Charon.sprite;
 
 var Rock1 = {img: null, x: -100, y: 100,
-             width: 150, height: 150, sprite: "Meteor.png"};
+             width: 150, height: 150, sprite: "images/meteors/Meteor2.png"};
 Rock1.img = new Image();
 Rock1.img.src = Rock1.sprite;
 
 var Rock2 = {img: null, x: -100, y: 250,
-             width: 150, height: 150, sprite: "Meteor.png"};
+             width: 150, height: 150, sprite: "images/meteors/Meteor2.png"};
 Rock2.img = new Image();
 Rock2.img.src = Rock2.sprite;
 
 var Rock3 = {img: null, x: -100, y: 600,
-             width: 150, height: 150, sprite: "Meteor.png"};
+             width: 150, height: 150, sprite: "images/meteors/Meteor2.png"};
 Rock3.img = new Image();
 Rock3.img.src = Rock3.sprite;
 
 var Rocket = {img: null, x: 1200, y: 300,
-	                  width: 400, height: 200, sprite: "Rocket.png"};
-	    Rocket.img = new Image();
-        Rocket.img.src = Rocket.sprite;
+	          width: 400, height: 200, sprite: "images/Pluto/Rocket.png"};
+Rocket.img = new Image();
+Rocket.img.src = Rocket.sprite;
 
 var gravity = 0;
 
 function startmeteors(){
-    meteors.push(new meteor(-100,-100, 100,100, "Meteor.png"));
-    meteors.push(new meteor(200,-100,100,100, "Meteor.png"));
-    //meteors.push(new meteor(500,-100, 100,100, "Meteor.png"));
-    meteors.push(new meteor(800,-100,100,100, "Meteor.png"));
-    meteors.push(new meteor(1100,-100, 100,100, "Meteor.png"));
-    meteors.push(new meteor(-100,-800,100,100, "Meteor.png"));
-    meteors.push(new meteor(200,-800, 100,100, "Meteor.png"));
-    //meteors.push(new meteor(500,-800,100,100, "Meteor.png"));
-    meteors.push(new meteor(800,-800, 100,100, "Meteor.png"));
-    meteors.push(new meteor(1100,-800,100,100, "Meteor.png"));
+    meteors.push(new meteor(-100,-100, 100,100, "images/meteors/Meteor.png"));
+    meteors.push(new meteor(200,-100,100,100, "images/meteors/Meteor.png"));
+    meteors.push(new meteor(800,-100,100,100, "images/meteors/Meteor.png"));
+    meteors.push(new meteor(1100,-100, 100,100, "images/meteors/Meteor.png"));
+    meteors.push(new meteor(-100,-800,100,100, "images/meteors/Meteor.png"));
+    meteors.push(new meteor(200,-800, 100,100, "images/meteors/Meteor.png"));
+    meteors.push(new meteor(800,-800, 100,100, "images/meteors/Meteor.png"));
+    meteors.push(new meteor(1100,-800,100,100, "images/meteors/Meteor.png"));
 }
 
 
@@ -227,12 +225,13 @@ function endphase4(){
 
 function defeat(weapon, boss){
    if(weapon.x + (weapon.width)/2 >= boss.x){
-       weapon.x = 1800;
-       weapon.y = 700;
+       weapon.x = -1000;
+       weapon.y = -1000;
        //insert win condition
    }
 }
 
+meteors = [];
 setTimeout(phase1(), 5000);
 setTimeout(endphase1(), 15000);
 clearTimeout(endphase1());

@@ -23,7 +23,10 @@ var key = [];
 
 //Bool for mode
 var opened = false;
+var score = 0;
 
+platform = new Image();
+platform.src = "images/Comet/Platform.png";
 
 
 //Player Object
@@ -154,7 +157,7 @@ function obstacleCollision(image1, image2, arrayIndex){
 	// 0 <= x < 1, 0 <= y < 1
     if(0 <= Math.abs(xvel) < 1 && 0 <= Math.abs(yvel) < 1){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 10;
+          if(opened == true) health -= 10;
           else if (shield > 0) shield -= 10;
           else if(shield <= 0) health -= 10;
           image1.x = -1000;
@@ -162,7 +165,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
 
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 10;
+          if(opened == true) health -= 10;
           else if (shield > 0) shield -= 10;
           else if(shield <= 0) health -= 10;
           image1.x = -1000;
@@ -170,7 +173,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 10;
+          if(opened == true) health -= 10;
           else if (shield > 0) shield -= 10;
           else if(shield <= 0) health -= 10;
           image1.x = -1000;
@@ -178,7 +181,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 10;
+          if(opened == true) health -= 10;
           else if (shield > 0) shield -= 10;
           else if(shield <= 0) health -= 10;
           image1.x = -1000;
@@ -189,7 +192,7 @@ function obstacleCollision(image1, image2, arrayIndex){
     //0 <= x < 1, 1 <= y < 2    
     }else if(0 <= Math.abs(xvel) < 1 && 1 <= Math.abs(yvel) < 2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 20;
+          if(opened == true) health -= 20;
           else if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           image1.x = -1000;
@@ -197,7 +200,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 20;
+          if(opened == true) health -= 20;
           else if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           image1.x = -1000;
@@ -205,7 +208,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 20;
+          if(opened == true) health -= 20;
           else if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           image1.x = -1000;
@@ -213,7 +216,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 20;
+          if(opened == true) health -= 20;
           else if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           image1.x = -1000;
@@ -224,7 +227,7 @@ function obstacleCollision(image1, image2, arrayIndex){
     //1 <= x < 2, 0 <= y < 1   
     }else if(1 <= Math.abs(xvel) < 2 && 0 <= Math.abs(yvel) < 1){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 20;
+          if(opened == true) health -= 20;
           else if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           image1.x = -1000;
@@ -232,7 +235,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 20;
+          if(opened == true) health -= 20;
           else if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           image1.x = -1000;
@@ -240,7 +243,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 20;
+          if(opened == true) health -= 20;
           else if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           image1.x = -1000;
@@ -248,7 +251,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 20;
+          if(opened == true) health -= 20;
           else if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           image1.x = -1000;
@@ -259,7 +262,7 @@ function obstacleCollision(image1, image2, arrayIndex){
     //1 <= x < 2, 1 <= y < 2
     }else if(1 <= Math.abs(xvel) < 2 && 1 <= Math.abs(yvel) < 2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 20;
+          if(opened == true) health -= 20;
           else if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           image1.x = -1000;
@@ -267,7 +270,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 20;
+          if(opened == true) health -= 20;
           else if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           image1.x = -1000;
@@ -275,7 +278,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 20;
+          if(opened == true) health -= 20;
           else if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           image1.x = -1000;
@@ -283,7 +286,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 20;
+          if(opened == true) health -= 20;
           else if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           image1.x = -1000;
@@ -293,7 +296,7 @@ function obstacleCollision(image1, image2, arrayIndex){
     //0 <= x < 1, 2 <= y < 3
     }else if(0 <= Math.abs(xvel) < 1 && 2 <= Math.abs(yvel) < 3){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -301,7 +304,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -309,7 +312,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -317,7 +320,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -328,7 +331,7 @@ function obstacleCollision(image1, image2, arrayIndex){
     //1 <= x < 2, 2 <= y < 3
     }else if(1 <= Math.abs(xvel) < 2 && 2 <= Math.abs(yvel) < 3){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -336,7 +339,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -344,7 +347,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -352,7 +355,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -363,7 +366,7 @@ function obstacleCollision(image1, image2, arrayIndex){
     //2 <= x < 3, 2 <= y < 3
     }else if(2 <= Math.abs(xvel) < 3 && 2 <= Math.abs(yvel) < 3){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -371,7 +374,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -379,7 +382,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -387,7 +390,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -398,7 +401,7 @@ function obstacleCollision(image1, image2, arrayIndex){
     //2 <= x < 3, 1 <= y < 2
     }else if(2 <= Math.abs(xvel) < 3 && 1 <= Math.abs(yvel) < 2){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -406,7 +409,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -414,7 +417,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -422,7 +425,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -433,7 +436,7 @@ function obstacleCollision(image1, image2, arrayIndex){
     //2 <= x < 3, 0 <= y < 1
     }else if(2 <= Math.abs(xvel) < 3 && 0 <= Math.abs(yvel) < 1){
        if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -441,7 +444,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -449,7 +452,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -457,7 +460,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 30;
+          if(opened == true) health -= 30;
           else if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           image1.x = -1000;
@@ -468,7 +471,7 @@ function obstacleCollision(image1, image2, arrayIndex){
     // x = 3 or y = 3
     }else if(Math.abs(xvel) == 3 || Math.abs(yvel) == 3){
     	if(mx1 >= mx2 && mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-    	  if(opened = true) health -= 40;
+    	  if(opened == true) health -= 40;
           else if (shield > 0) shield -= 40;
           else if(shield <= 0) health -= 40;
           image1.x = -1000;
@@ -476,7 +479,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 40;
+          if(opened == true) health -= 40;
           else if (shield > 0) shield -= 40;
           else if(shield <= 0) health -= 40;
           image1.x = -1000;
@@ -484,7 +487,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
-          if(opened = true) health -= 40;
+          if(opened == true) health -= 40;
           else if (shield > 0) shield -= 40;
           else if(shield <= 0) health -= 40;
           image1.x = -1000;
@@ -492,7 +495,7 @@ function obstacleCollision(image1, image2, arrayIndex){
           removeElement(meteors, arrayIndex);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
-          if(opened = true) health -= 40;
+          if(opened == true) health -= 40;
           else if (shield > 0) shield -= 40;
           else if(shield <= 0) health -= 40;
           image1.x = -1000;
@@ -537,6 +540,10 @@ var disToXena;
 var landerRotate = 0;
 //Update Function
 function update(){
+	//updating score
+	if(xvel > 0){
+		score += xvel*0.01;
+	}
 	//console.log(yvel);
 	//console.log(player.transX);
 	healthCondition();
@@ -611,6 +618,7 @@ function update(){
 		   player.x + player.width > xena.x &&
 		   player.y < xena.y+roomY/2-200 + 400 &&
 		   player.height + player.y > xena.y+roomY/2-200){
+		   	score += 20;
 		   	nextLevel();
 		   }
 }
@@ -632,7 +640,7 @@ function nextLevel()
 //	disToXena = roomX;
 	boundary = [];
 	meteors = [];
-	xena = new comet(roomX-roomY/2,-100, roomY, roomY, "images/comet/Comet.png");
+	xena = new comet(roomX-roomY/2,-100, roomY, roomY, "images/Comet/Comet.png");
 	makeBoundary();
 	initMeteors(level);
 }
@@ -903,7 +911,7 @@ function displayEvent(event){
 }
 
 
-xena = new comet(roomX-roomY/2,-100, roomY, roomY, "images/comet/Comet.png");
+xena = new comet(roomX-roomY/2,-100, roomY, roomY, "images/Comet/Comet.png");
 
 function draw(){
 	//The order things are listed here is the order they're drawn,
@@ -944,8 +952,8 @@ ctx.drawImage(obj.img,obj.x,obj.y,obj.width,obj.height);
 //drawing the comet
 
 ctx.drawImage(xena.img,xena.x,xena.y,xena.width,xena.height);
-ctx.fillStyle = "#00FF00";
-ctx.fillRect(xena.x,xena.y+roomY/2-200,100,400);
+//ctx.fillStyle = "#00FF00";
+ctx.drawImage(platform,xena.x,xena.y+roomY/2-200,100,400);
 
 /*
 ctx.beginPath();
@@ -971,6 +979,9 @@ if(rotate < 90){
 }
 */
 statBars();
+ctx.font="20px Georgia";
+ctx.fillStyle = "white";
+ctx.fillText("Score: " + Math.floor(score), 100,100);
 
 //this draws a meteor
 //ctx.drawImage(rock.img,10,10,100,100);

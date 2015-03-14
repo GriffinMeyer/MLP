@@ -36,32 +36,45 @@ var level = 1;
 var keys;
 var gameState = "off";
 var paused = false;
-var startButton;
-var playButton;
-var returnMainMenuButton;
-var creditButton;
-var mainMenu;
-var pauseMenu;
-var creditMenu;
-var titleImage;
+
+
+// declare background Image
 var background;
 var levelq = [];
 var playing = false;
-var smallMeteor;
-var smallMeteor2;
-var smallMeteor3;
-var largeMeteor;
+
+
 // load levels for game 
 
 
+function loadButtons()
+{
+	//draw Buttons needed for Menu
+    startButton = new Button("Start Button","images/buttons/StartButton.png",158,487,89,256);
+    creditButton = new Button("Credit Button","images/buttons/creditButton.png",792,487,89,256);
+    returnButton = new Button("Return Button","images/buttons/returnButton.png",487,594,89,256);
+    nextButton = new Button("Next Button", "images/buttons/nextButton.png",828,684,89,256);
+    backButton = new Button("Back Button", "images/buttons/backButton.png",176,684,89,256);
+   
+    mainButton = new Button("Menu Button", "images/buttons/mainButton.png",504,684,89,256);
+    instructButton = new Button("Instruction Button", "images/buttons/instructionButton.png",487,594,89,256);
+    pauseButton = new Button("Play","images/buttons/pauseButton.png",487,594,89,256);
+	
+}
+
 function loadImages()
 {
-	// load small meteor image
-	smallMeteor = new Sprite("images/meteors/Meteor.png",0,0,50,50);
-	smallMeteor2 = new Sprite("images/meteors/Meteor.png",100,200,50,50);
-	smallMeteor3 = new Sprite("images/meteors/Meteor.png",200,200,50,50);
-	largeMeteor = new Sprite("images/meteors/Meteor.png",0,0,70,70);
-	
+	  //draw images needed for menu
+    titleImage = new Sprite("images/menu/title.png",270,18,360,702);
+    
+    // page 1 of instructions 
+    instructPage1 = new Sprite("images/menu/InstructionPage1.png",78,95,467,782);
+    instructPage2 = new Sprite("images/menu/InstructionPage2.png",247,95,467,782);
+    instructPage3 = new Sprite("images/menu/InstructionPage3.png",247,95,467,782);
+    instructPage4 = new Sprite("images/menu/InstructionPage4.png",247,95,467,782);
+    instructPage5 = new Sprite("images/menu/InstructionPage5.png",247,95,467,782);
+    disabledbackButton = new Sprite("images/buttons/backButtonDisabled.png",176,684,89,256)
+    
 }
 
 
@@ -91,53 +104,81 @@ function createBackground()
 // not yet ready, just messing with a sprite sheet for the menu 
 function createMenus()
 {
-	//draw Buttons needed for Menu
-    startButton = new Button("Start Button","images/menu/Button(StartGame).png",360,408,148,473);
-    creditButton = new Button("Credit Button","images/menu/Button(Credits).png",360,570,149,475);
-    returnButton = new Button("Return Button","images/menu/Button(Return).png",360,570,149,475);
-    
-    //draw images needed for menu
-    titleImage = new Sprite("images/menu/title.png",270,18,360,702);
-    
-    playButton = new Button("Play","images/menu/Button(Return).png",360,570,149,475);
+
     mainMenu = new Menu("Main Menu");
     pauseMenu = new Menu("Pause Menu");
     creditMenu = new Menu("Credit Menu");
+	instructionPage1 = new Menu("page1");
+	instructionPage2 = new Menu("page2");
+	instructionPage3 = new Menu("page3");
+	instructionPage4 = new Menu("page4");
+	instructionPage5 = new Menu("page5");
 	
 	// adding items to the main menu
-	mainMenu.addItem(startButton);
-	mainMenu.addItem(creditButton);
+	mainMenu.addButton(startButton);
+	mainMenu.addButton(creditButton);
+	mainMenu.addButton(instructButton);
 	mainMenu.addItem(titleImage);
-	
+	 
 	
 	// adding items to the credit menu
 	creditMenu.addItem(titleImage);
-	creditMenu.addItem(returnButton);
+	creditMenu.addButton(returnButton);
+	
 	
 	// adding items to the pause menu
-	pauseMenu.addItem(playButton);
+	pauseMenu.addButton(pauseButton);
+	
+	
+	// add instructions Page 1 menu
+	instructionPage1.addButton(nextButton);
+	instructionPage1.addButton(mainButton);
+	instructionPage1.addItem(disabledbackButton);
+	instructionPage1.addItem(instructPage1);
+	
+	// add instructions page 2 menu
+
+	instructionPage2.addButton(nextButton);
+	instructionPage2.addButton(backButton);
+	instructionPage2.addButton(mainButton);
+	instructionPage2.addItem(instructPage2);
+	
+	// add instructions page 3 menu
+
+	instructionPage3.addButton(nextButton);
+	instructionPage3.addButton(backButton);
+	instructionPage3.addButton(mainButton);
+	instructionPage3.addItem(instructPage3);
+	
+	
+	// add instructions page 4 menu
+	instructionPage4.addButton(nextButton);
+	instructionPage4.addButton(backButton);
+	instructionPage4.addButton(mainButton);
+	instructionPage4.addItem(instructPage4);
+	
+	// add instructions page 5 menu
+	instructionPage4.addButton(nextButton);
+	instructionPage4.addButton(backButton);
+	instructionPage4.addButton(mainButton);
+	instructionPage4.addItem(instructPage4);
+	
 }
 
-function pauseGame()
-{
-	console.log("paused game");
-	pauseMenu.draw();
-	paused = true;
-}
 
 function loadGame()
 {
 	loadImages();
+	loadButtons();
 	console.log("loaded game");
 	createMenus();
 	createBackground();
 	makeBoundary();
-	//loadLevels();
 	initMeteors(level);
 	randEvent();
 	background.draw();
 	startGame();
-		mainMenu.draw();
+	mainMenu.draw();
 	
 }
 
@@ -149,15 +190,15 @@ function startGame()
 	
 	setInterval(function()
 	{
-	//	level[0].draw();
+		
 		if(gameState == "off" && mainMenu.enabled )
 		{
-			
-			console.log("drawing main menu");
+			//console.log("drawing main menu");
 			mainMenu.draw();
 		}
 		if(startButton.inputEnabled && startButton.isClicked)
 		{
+			console.log("start game clicked");
 			mainMenu.clear();
 			music.stop('title');
 			music.play('level1');
@@ -166,13 +207,86 @@ function startGame()
 		}
 		if(creditButton.inputEnabled && creditButton.isClicked)
 		{
-			//console.log("drawing main menu");
+			console.log("credits menu clicked");
+		//    mainMenu.clear();
+		
 		    mainMenu.clear();
 		    background.draw();
 			creditMenu.draw();
 		}
+		if(instructButton.inputEnabled && instructButton.isClicked)
+		{
+			console.log("instruction page1 menu clicked");
+		    mainMenu.clear();
+		    background.draw();
+			instructionPage1.draw();
+		}
+		if(instructButton.inputEnabled && instructButton.isClicked)
+		{
+		    mainMenu.clear();
+		    background.draw();
+			instructionPage1.draw();
+		}
+		if(nextButton.inputEnabled && nextButton.isClicked)
+		{
+			if(instructionPage1.isEnabled())
+			{
+				instructionPage1.clear();
+		   		background.draw();
+				instructionPage2.draw();
+			}
+			else if(instructionPage2.isEnabled())
+			{
+				instructionPage2.clear();
+			    background.draw();
+				instructionPage3.draw();
+			}
+			else if(instructionPage3.isEnabled())
+			{
+				instructionPage3.clear();
+			    background.draw();
+				instructionPage4.draw();
+			}
+		    
+		}
+		if(backButton.inputEnabled && backButton.isClicked)
+		{
+			if(instructionPage2.isEnabled())
+			{
+				instructionPage2.clear();
+			    background.draw();
+				instructionPage1.draw();
+			}
+			else if(instructionPage3.isEnabled())
+			{
+				instructionPage3.clear();
+			    background.draw();
+				instructionPage2.draw();
+			}
+			else if(instructionPage4.isEnabled())
+			{
+				instructionPage4.clear();
+			    background.draw();
+				instructionPage3.draw();
+			}
+		}
+		if(mainButton.inputEnabled && mainButton.isClicked)
+		{
+			if(instructionPage1.isEnabled)
+			{
+				instructionPage1.clear();
+			}
+			if(instructionPage2.isEnabled)
+			{
+				instructionPage2.clear();
+			}
+		    
+		    background.draw();
+			mainMenu.draw();
+		}
 		if(returnButton.inputEnabled && returnButton.isClicked)
 		{
+			console.log("return to menu button clicked");
 			creditMenu.clear();
 			background.draw();
 			mainMenu.draw();
@@ -182,18 +296,20 @@ function startGame()
 			music.pause('level1');
 			pauseMenu.draw();
 		}
-		if(playButton.inputEnabled && playButton.isClicked)
+		if(pauseButton.inputEnabled && pauseButton.isClicked)
 		{
-			console.log("play button pressed");
+			console.log("on pause button pressed" + playing);
 			pauseMenu.clear();
 			paused = false;
 		}
 		creditButton.update();
 		startButton.update();
 		returnButton.update();
-		playButton.update();
-
-
+		pauseButton.update();
+		instructButton.update();
+		mainButton.update();
+		backButton.update();
+		nextButton.update();
 // commented out game() so the game wont start, its still not ready yet 
 	 	if(gameState == "on" && !playing)
 		{    

@@ -4,9 +4,9 @@ function Button(name,img, x, y, height, width)
 {
 
 	this.name = name;
-	this.img = new Image();
-	this.img.onload = this.onImageLoad;
-	this.img.src = img;
+	this.enabledimg = new Image();
+	this.enabledimg.onload = this.onImageLoad;
+	this.enabledimg.src = img;
 	this.x = x;
 	this.y = y;
 	this.width = width;
@@ -24,50 +24,41 @@ Button.prototype.onImageLoad = function()
 	console.log("Button Image loaded");
 }
 
-Button.prototype.isEnabled = function()
-{
-	return this.inputEnabled;
-}
-
 
 //---------------- Manipulation Funcitons-------------
-
-Button.prototype.disableButton = function()
-{
-	this.inputEnabled = false;
-}
-
-
-Button.prototype.enableButton = function()
-{
-	this.inputEnabled = true;
-}
 
 
 Button.prototype.draw= function()
 {
 //	console.log("drawing");
-	ctx.drawImage(
-		this.img,
-		this.x,
-		this.y,
-		this.width,
-		this.height
-		);
+	
 	this.inputEnabled = true;
+	ctx.drawImage(this.enabledimg,this.x,this.y,this.width,this.height);
+		
+	
 }
 
 Button.prototype.clear = function()
 {
 	ctx.clearRect(this.x,this.y,this.width,this.height);
+	this,display = false;
 	this.inputEnabled = false;
 	this.isClicked = false;
 }
 
 
+Button.prototype.setDisableImage = function(image)
+{
+	
+	this.disabledImg = new Image();
+	this.disabledImg.src = image;
+}
+
 Button.prototype.update = function()
 {
-	if(this.inputEnabled == true)
+	//console.log("update" + this.name + " " + this.inputEnabled);
+	
+	if(this.inputEnabled)
 	{
 		if(mousePosition.x >= this.x && mousePosition.x <= this.x + this.width &&
 	            mousePosition.y >= this.y && mousePosition.y <= this.y + this.height)
@@ -82,11 +73,8 @@ Button.prototype.update = function()
          			     // isClicking = true;
          		 	    // }
          		 	 
-         		 	  	this.isClicked = true;
+         		 	  this.isClicked = true;
          		 	  mousePressed = false;
-         		 	   	
-         		 	   
-         		 	    
                    }
                    else
                    {

@@ -674,9 +674,13 @@ function modeSwitch(){
 	opened = !opened;
 	if(opened){
 		player.img.src = "images/phil/Phil (Open).png";
+		sound.play('charging');
+		sound.volume(0.25);
+
 	}
 	if(!opened){
 		player.img.src = "images/phil/Phil (Default).png";
+		sound.stop('charging');
 	}
 	if(debug){
 		console.log("Opened set to " + opened);
@@ -711,6 +715,7 @@ function makeBoundary(){
 
 function healthCondition(){
 	if( health <= 0){
+	sound.play('explosion');
 	alert("You died :(");
     location.reload();
 	}

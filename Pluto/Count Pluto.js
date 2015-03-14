@@ -227,7 +227,11 @@ function defeat(weapon, boss){
    if(weapon.x + (weapon.width)/2 >= boss.x){
        weapon.x = -1000;
        weapon.y = -1000;
+       Pluto.x = -2000;
+       Pluto.y = -2000;
        //insert win condition
+       alert("YOU WIN!!!");
+       location.reload();
    }
 }
 

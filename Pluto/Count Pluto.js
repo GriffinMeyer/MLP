@@ -16,12 +16,12 @@ var Rock1 = {img: null, x: -100, y: 100,
 Rock1.img = new Image();
 Rock1.img.src = Rock1.sprite;
 
-var Rock2 = {img: null, x: -100, y: 300,
+var Rock2 = {img: null, x: -100, y: 250,
              width: 150, height: 150, sprite: "Meteor.png"};
 Rock2.img = new Image();
 Rock2.img.src = Rock2.sprite;
 
-var Rock3 = {img: null, x: -100, y: 500,
+var Rock3 = {img: null, x: -100, y: 600,
              width: 150, height: 150, sprite: "Meteor.png"};
 Rock3.img = new Image();
 Rock3.img.src = Rock3.sprite;

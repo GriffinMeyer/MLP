@@ -8,7 +8,7 @@ var health = 100;
 var energy = 100;
 var shield = 100;
 //Level Demensions- Not the same as canvas
-var roomX = 4000;
+var roomX = 10000;
 var roomY = 2000;
 //Velocity direction values
 var xvel = 0;
@@ -502,6 +502,23 @@ function obstacleCollision(image1, image2, arrayIndex){
     }
 }
 
+function circleSquareCollide(circle,rect){
+	//console.log(circle.y);
+	//console.log(rect.y);
+	var radius = ((circle.width-200)/2);
+    var distX = Math.abs(circle.x+radius - rect.x-rect.width/2);
+    var distY = Math.abs(circle.y+radius+100 - rect.y-rect.height/2);
+
+    if (distX > (rect.width/2 + radius)) { return false; }
+    if (distY > (rect.height/2 + radius)) { return false; }
+
+    if (distX <= (rect.width/2)) { return true; } 
+    if (distY <= (rect.height/2)) { return true; }
+
+    var dx=distX-rect.width/2;
+    var dy=distY-rect.height/2;
+    return (dx*dx+dy*dy<=(radius*radius));
+}
 var Xdis;
 var Ydis;
 var sqx;
@@ -521,6 +538,7 @@ var landerRotate = 0;
 //Update Function
 function update(){
 	//console.log(yvel);
+	//console.log(player.transX);
 	healthCondition();
 	//Updating virtual player location data
 	player.transX += xvel;
@@ -566,39 +584,35 @@ function update(){
 		}
 		boundaryCollision();
 		modeUpdate();
-		disToXena = -(player.transX + player.width - roomX + (roomY/2) + 200);
+		disToXena = -(player.transX + player.width - roomX + (roomY/2)+200);
+		//console.log(disToXena);
+		//if(circleSquareCollide(player,xena) == true){
+		//	console.log("collide");
+		//}
+		//console.log(circleSquareCollide(xena, player));
 		//Logic for comet collision
-		//if player is within 500 pixles of xena
-		/*
-		if(disToXena+200 < 400){
-			if(xvel > 1){
-				xvel -= .1;
-			}
-			yvel = 0;
-			if(player.transY < (roomY/2)+player.height/2){
-				yvel += 0.5;
-			}
-			if(player.transY > (roomY/2)+player.height/2){
-				yvel -= 0.5;
-			}
-			if(disToXena+200 < 0 && xvel != 0){
-				xvel -= 0.01;
-				
-			}
-			if(disToXena+200 > 50){
-				xvel += 0.01;
-				
-			}
+		//if player is within 400 pixles of xena
+		
+	 	
+		if(disToXena < 400){
 
-			landerRotate = 180-((disToXena * 180)/(400));
+			landerRotate = (180-((disToXena * 180)/(400)));
+			//console.log(landerRotate);
 			if(landerRotate > 180){
 				landerRotate = 180;
 			}
 		}
-		if(-disToXena-200 >= 0){
-		
-			nextLevel();
-		}*/
+		ctx.fillRect(xena.x,xena.y+roomY/2-200,100,400);
+		if(circleSquareCollide(xena, player) == true){
+			xvel = -xvel;
+			yvel = -yvel;
+		}
+		if(player.x < xena.x + 100 && 
+		   player.x + player.width > xena.x &&
+		   player.y < xena.y+roomY/2-200 + 400 &&
+		   player.height + player.y > xena.y+roomY/2-200){
+		   	nextLevel();
+		   }
 }
 
 function nextLevel()
@@ -614,10 +628,11 @@ function nextLevel()
 	health = 100;
 	shield = 100;
 	energy = 100;
+	landerRotate = 0;
 //	disToXena = roomX;
 	boundary = [];
 	meteors = [];
-	xena = new comet(roomX-100,0, 100, roomY, "images/meteors/Meteor.png");
+	xena = new comet(roomX-roomY/2,-100, roomY, roomY, "images/comet/Comet.png");
 	makeBoundary();
 	initMeteors(level);
 }
@@ -882,7 +897,7 @@ function displayEvent(event){
 
 }
 
-xena = new comet(roomX-100,0, 100, roomY, "images/meteors/Meteor.png");
+xena = new comet(roomX-roomY/2,-100, roomY, roomY, "images/comet/Comet.png");
 
 function draw(){
 	//The order things are listed here is the order they're drawn,
@@ -922,10 +937,9 @@ ctx.drawImage(obj.img,obj.x,obj.y,obj.width,obj.height);
 
 //drawing the comet
 
-ctx.fillStyle = "#B5916C";
-ctx.fillRect(xena.x,100,100,100);
-//ctx.fillStyle = "#00FF00";
-//ctx.fillRect(0,0,canvas.width,canvas.height)
+ctx.drawImage(xena.img,xena.x,xena.y,xena.width,xena.height);
+ctx.fillStyle = "#00FF00";
+ctx.fillRect(xena.x,xena.y+roomY/2-200,100,400);
 
 /*
 ctx.beginPath();

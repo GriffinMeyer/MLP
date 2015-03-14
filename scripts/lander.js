@@ -134,7 +134,12 @@ if(player.transY+player.height > roomY || player.transY-player.height/2 < 0){
 
 }
 
-function obstacleCollision(image1, image2){
+function removeElement(array, i){
+	var index = array.indexOf(i);
+	array.splice(index, 1);
+}
+
+function obstacleCollision(image1, image2, arrayIndex){
 	
     var mx1 = image1.x;
     var Mx1 = image1.x + image1.width;
@@ -151,30 +156,26 @@ function obstacleCollision(image1, image2){
           if (shield > 0) shield -= 10;
           else if(shield <= 0) health -= 10;
           else if(opened = true) health -= 10;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
+
         
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 10;
           else if(shield <= 0) health -= 10;
           else if(opened = true) health -= 10;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
-          
+          removeElement(meteors, i);
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 10;
           else if(shield <= 0) health -= 10;
           else if(opened = true) health -= 10;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+       removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 10;
           else if(shield <= 0) health -= 10;
           else if(opened = true) health -= 10;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
        }  
     
     //0 <= x < 1, 1 <= y < 2    
@@ -183,28 +184,24 @@ function obstacleCollision(image1, image2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           else if(opened = true) health -= 20;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           else if(opened = true) health -= 20;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           else if(opened = true) health -= 20;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
        } 
     
     //1 <= x < 2, 0 <= y < 1   
@@ -213,29 +210,25 @@ function obstacleCollision(image1, image2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           else if(opened = true) health -= 20;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           else if(opened = true) health -= 20;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           else if(opened = true) health -= 20;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           else if(opened = true) health -= 20;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
        }
     
     //1 <= x < 2, 1 <= y < 2
@@ -244,29 +237,25 @@ function obstacleCollision(image1, image2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           else if(opened = true) health -= 20;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           else if(opened = true) health -= 20;
-          image1.x = 1800;
-          image1.y = 350;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           else if(opened = true) health -= 20;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 20;
           else if(shield <= 0) health -= 20;
           else if(opened = true) health -= 20;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
        }
     //0 <= x < 1, 2 <= y < 3
     }else if(0 <= Math.abs(xvel) < 1 && 2 <= Math.abs(yvel) < 3){
@@ -274,29 +263,25 @@ function obstacleCollision(image1, image2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
        }
     
     //1 <= x < 2, 2 <= y < 3
@@ -305,29 +290,25 @@ function obstacleCollision(image1, image2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
        }
     
     //2 <= x < 3, 2 <= y < 3
@@ -336,29 +317,25 @@ function obstacleCollision(image1, image2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
        }
     
     //2 <= x < 3, 1 <= y < 2
@@ -367,29 +344,25 @@ function obstacleCollision(image1, image2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
        }
     
     //2 <= x < 3, 0 <= y < 1
@@ -398,29 +371,25 @@ function obstacleCollision(image1, image2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 30;
           else if(shield <= 0) health -= 30;
           else if(opened = true) health -= 30;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
        }
     
     // x = 3 or y = 3
@@ -429,29 +398,25 @@ function obstacleCollision(image1, image2){
           if (shield > 0) shield -= 40;
           else if(shield <= 0) health -= 40;
           else if(opened = true) health -= 40;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
         
        }else if(mx1 >= mx2 && mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 40;
           else if(shield <= 0) health -= 40;
           else if(opened = true) health -= 40;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && my1 >= my2 && my1 <= My2){
           if (shield > 0) shield -= 40;
           else if(shield <= 0) health -= 40;
           else if(opened = true) health -= 40;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
           
        }else if(Mx1 >= mx2 && Mx1 <= Mx2 && My1 >= my2 && My1 <= My2){
           if (shield > 0) shield -= 40;
           else if(shield <= 0) health -= 40;
           else if(opened = true) health -= 40;
-          image1.x = 2200;
-          image1.y = Math.random() * 800;
+          removeElement(meteors, i);
        }
     }
 }
@@ -514,12 +479,7 @@ function update(){
 				obj.x -= xvel;
 				obj.y -= yvel;
 			}
-			obstacleCollision(obj,player); 
-			if(Xdis >= 1000){
-				obj.x = 2200;
-				obj.y = Math.random() * 800;
-			}
-			//obj.x++;
+			obstacleCollision(obj,player, i);
 
 		}
 		boundaryCollision();

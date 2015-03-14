@@ -617,7 +617,7 @@ function nextLevel()
 //	disToXena = roomX;
 	boundary = [];
 	meteors = [];
-	xena = new comet(roomX-100,0, 100, roomY, "images/meteors/Meteor.png");
+	xena = new comet(roomX-100,0, 100, roomY, "images/Comet/Comet2.png");
 	makeBoundary();
 	initMeteors(level);
 }
@@ -882,7 +882,7 @@ function displayEvent(event){
 
 }
 
-xena = new comet(roomX-100,0, 100, roomY, "images/meteors/Meteor.png");
+xena = new comet(roomX-100,0, 100, roomY, "images/Comet/Comet2.png");
 
 function draw(){
 	//The order things are listed here is the order they're drawn,
